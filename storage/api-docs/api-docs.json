@@ -1,0 +1,25 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Devathon 8: Team 1",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/",
+            "description": "Localhost"
+        }
+    ],
+    "paths": {
+        "/v1/example": {
+            "get": {
+                "operationId": "55439276b13a92ee1844da03a7324ef1",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    }
+}
