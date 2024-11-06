@@ -11,12 +11,27 @@
         }
     ],
     "paths": {
-        "/v1/example": {
+        "/v1/status": {
             "get": {
-                "operationId": "55439276b13a92ee1844da03a7324ef1",
+                "summary": "Status API",
+                "description": "Status API",
+                "operationId": "00addfdbb6b7ac9684a6417eab82f1dc",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
                     }
                 }
             }
