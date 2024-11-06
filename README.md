@@ -56,7 +56,7 @@ php artisan migrate
 ```
 
 7. Create API KEY
-```bash
+```env
 APY_KEY=your_api_key
 ```
 
