@@ -76,6 +76,28 @@ yarn build
 
 Your application should now be running at `http://localhost:8000`
 
+## Migations commands
+
+- Run all migrations
+```bash
+php artisan migrate
+```
+
+- Rollback latest migration
+```bash
+php artisan migrate:rollback
+```
+
+- Re-create database
+```bash
+php artisan migrate:refresh
+```
+
+- Rollback all migrations
+```bash
+php artisan migrate:reset
+```
+
 ## Additional Commands
 
 - Clear application cache
