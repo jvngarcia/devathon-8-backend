@@ -55,11 +55,17 @@ DB_PASSWORD=your_password
 php artisan migrate
 ```
 
+7. Create API KEY
+```env
+APY_KEY=your_api_key
+```
+
 ## Running the Application
 
 1. Start the development server
 ```bash
-php artisan serve ```
+php artisan serve 
+```
 
 2. Compile frontend assets
 ```bash
