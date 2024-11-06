@@ -59,7 +59,8 @@ php artisan migrate
 
 1. Start the development server
 ```bash
-php artisan serve ```
+php artisan serve 
+```
 
 2. Compile frontend assets
 ```bash
