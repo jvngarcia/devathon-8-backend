@@ -13,15 +13,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
+    use HasFactory;
+    /**
+    * The attributes that are mass assignable.
+    *
+    * @var array<string>
+    */
     protected $fillable = [
         'address'
     ];
