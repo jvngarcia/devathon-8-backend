@@ -17,3 +17,5 @@ Route::get(
         return $request->user();
     }
 )->middleware('auth:sanctum');
+
+Route::post('/adresses', [AdresseController::class, 'store']);
