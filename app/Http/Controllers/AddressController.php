@@ -33,6 +33,56 @@ class AddressController extends Controller
 {
     /**
      * Store a newly created resource in storage.
+     *
+     * This method validates the incoming request data, checks if the address already exists, and creates a new address record if it does not.
+     *
+     * @param Request $request The incoming request containing the address data.
+     * @return JsonResponse A JSON response indicating the success or failure of the address creation.
+     * 
+     * @OA\Post(
+     *     path="/api/v1/addresses",
+     *     summary="Create a new address",
+     *     tags={"Addresses"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="longitude", type="number", format="float", example=12.3456),
+     *             @OA\Property(property="latitude", type="number", format="float", example=56.7890),
+     *             @OA\Property(property="place", type="string", example="Example Place"),
+     *             @OA\Property(property="city", type="string", example="Example City"),
+     *             @OA\Property(property="country", type="string", example="Example Country")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Address created successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="longitude", type="number", format="float", example=12.3456),
+     *             @OA\Property(property="latitude", type="number", format="float", example=56.7890),
+     *             @OA\Property(property="place", type="string", example="Example Place"),
+     *             @OA\Property(property="city", type="string", example="Example City"),
+     *             @OA\Property(property="country", type="string", example="Example Country")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid request data",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string", example="Invalid request data")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=409,
+     *         description="Address already exists",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string", example="Address already exists")
+     *         )
+     *     )
+     * )
      */
     public function store(Request $request): JsonResponse
     {
@@ -45,7 +95,7 @@ class AddressController extends Controller
         ]);
 
         if (Address::where('place', $validatedData['place'])->where('city', $validatedData['city'])->where('country', $validatedData['country'])->exists()) {
-            return response()->json(['error' => 'Address already exists'], 400);
+            return response()->json(['error' => 'Address already exists'], 409);
         }
 
         $address = Address::create($validatedData);
