@@ -35,8 +35,13 @@ class Address extends Model
      * @var array<string>
      */
     protected $fillable = [
-        'address'
+        'longitude',
+        'latitude',
+        'place',
+        'city',
+        'country',
     ];
+
 
     /**
      * Define primary key
