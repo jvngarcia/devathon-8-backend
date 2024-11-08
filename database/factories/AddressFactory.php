@@ -18,7 +18,11 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
-            "address" => fake()->address(),
+            'place' => $this->faker->address,
+            'city' => $this->faker->city,
+            'country' => $this->faker->country,
+            'longitude' => $this->faker->longitude,
+            'latitude' => $this->faker->latitude,
         ];
     }
 }

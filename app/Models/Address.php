@@ -49,4 +49,17 @@ class Address extends Model
      * @var string
      */
     protected $primaryKey = 'id';
+
+    /**
+     * Interact with the coordinates attribute
+     *
+     * @return void
+     */
+    public function coordinates(): array
+    {
+        return [
+            floatval($this->longitude),
+            floatval($this->latitude),
+        ];
+    }
 }
