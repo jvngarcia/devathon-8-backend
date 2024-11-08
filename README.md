@@ -104,6 +104,11 @@ php artisan migrate:refresh
 php artisan migrate:reset
 ```
 
+## Documentation Commands
+```bash
+php artisan l5-swagger:generate
+```
+
 ## Additional Commands
 
 - Clear application cache
