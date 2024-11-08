@@ -1,11 +1,11 @@
 <?php
 /**
- * UnauthorizedException
+ * AddressNotFoundException
  *
  * PHP version 8
  *
  * @category Exceptions
- * @package  Exceptions\Auth
+ * @package  Exceptions\Address
  * @author   Angel García <angelgarciaweb@gmail.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/jvngarcia/devathon-8-backend.git
@@ -15,19 +15,17 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 /**
- * Unauthorized exception
+ * Address Not found exception
  *
  * @category Exceptions
- * @package  Exceptions\Auth
+ * @package  Exceptions\Address
  * @author   Angel García <angelgarciaweb@gmail.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/jvngarcia/devathon-8-backend.git
  */
-class UnauthorizedException extends Exception
+class AddressNotFoundException extends Exception
 {
     /**
      * Render the exception as an HTTP response.
@@ -40,13 +38,13 @@ class UnauthorizedException extends Exception
             [
                 'errors' => [
                     [
-                        'status' => 401,
-                        'title' => 'Unauthorized',
-                        'detail' => 'API key is invalid.',
+                        'status' => 404,
+                        'title' => 'Not Found',
+                        'detail' => 'Address not found.',
                     ],
                 ],
             ],
-            401
+            404
         );
     }
 }

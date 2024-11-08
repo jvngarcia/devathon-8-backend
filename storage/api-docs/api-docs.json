@@ -11,6 +11,34 @@
         }
     ],
     "paths": {
+        "/v1/addresses/recent": {
+            "get": {
+                "summary": "Get the last 5 addresses",
+                "description": "Get the last 5 addresses",
+                "operationId": "94f2b546f6040970157da322ee5cc359",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
         "/v1/status": {
             "get": {
                 "summary": "Status API",
