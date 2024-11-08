@@ -20,4 +20,4 @@ Route::get(
     }
 )->middleware('auth:sanctum');
 
-Route::post('/adresses', [AdresseController::class, 'store']);
+Route::post('/adresses', [AddressController::class, 'store']);

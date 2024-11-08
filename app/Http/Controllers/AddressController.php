@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Address Controller
  *
@@ -33,9 +34,26 @@ class AddressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $validatedData = $request->validate([
+            'longitude' => 'required|numeric|min:-180|max:180',
+            'latitude' => 'required|numeric|min:-90|max:90',
+            'place' => 'required|string',
+            'city' => 'required|string',
+            'country' => 'required|string',
+        ]);
+
+        if (Address::where('place', $validatedData['place'])->where('city', $validatedData['city'])->where('country', $validatedData['country'])->exists()) {
+            return response()->json(['error' => 'Address already exists'], 400);
+        }
+
+        $address = Address::create($validatedData);
+
+        return response()->json([
+            'message' => 'Address created successfully',
+            'address' => $address
+        ], 201);
     }
 
     /**
