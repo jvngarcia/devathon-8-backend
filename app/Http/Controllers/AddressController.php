@@ -15,10 +15,12 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\AddressNotFoundException;
+use App\Exceptions\AddressAlreadyExistsException;
 use App\Http\Resources\AddressCollection;
 use App\Models\Address;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 /**
  * Address Controller
@@ -40,62 +42,67 @@ class AddressController extends Controller
      * @return JsonResponse A JSON response indicating the success or failure of the address creation.
      * 
      * @OA\Post(
-     *     path="/api/v1/addresses",
+     *     path="/api/addresses",
      *     summary="Create a new address",
      *     tags={"Addresses"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="longitude", type="number", format="float", example=12.3456),
-     *             @OA\Property(property="latitude", type="number", format="float", example=56.7890),
-     *             @OA\Property(property="place", type="string", example="Example Place"),
-     *             @OA\Property(property="city", type="string", example="Example City"),
-     *             @OA\Property(property="country", type="string", example="Example Country")
+     *             @OA\Property(property="place", type="string"),
+     *             @OA\Property(property="city", type="string"),
+     *             @OA\Property(property="country", type="string"),
+     *             @OA\Property(property="coordinates", type="object",
+     *                 @OA\Property(property="longitude", type="number", format="float", minimum=-180, maximum=180),
+     *                 @OA\Property(property="latitude", type="number", format="float", minimum=-90, maximum=90)
+     *             )
      *         )
      *     ),
      *     @OA\Response(
      *         response=201,
      *         description="Address created successfully",
      *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="longitude", type="number", format="float", example=12.3456),
-     *             @OA\Property(property="latitude", type="number", format="float", example=56.7890),
-     *             @OA\Property(property="place", type="string", example="Example Place"),
-     *             @OA\Property(property="city", type="string", example="Example City"),
-     *             @OA\Property(property="country", type="string", example="Example Country")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=400,
-     *         description="Invalid request data",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="error", type="string", example="Invalid request data")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=409,
-     *         description="Address already exists",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="error", type="string", example="Address already exists")
-     *         )
+     *         type="object",
+     *         @OA\Property(property="data", type="object",
+     *              @OA\Property(property="message", type="string", example="Address created successfully"),
+     *              @OA\Property(property="address", type="object",
+     *                  @OA\Property(property="id", type="integer", example=1),
+     *                  @OA\Property(property="place", type="string", example="Example Place"),
+     *                  @OA\Property(property="city", type="string", example="Example City"),
+     *                  @OA\Property(property="country", type="string", example="Example Country"),
+     *                  @OA\Property(property="coordinates", type="object",
+     *                      @OA\Property(property="longitude", type="number", format="float", example=123.456),
+     *                      @OA\Property(property="latitude", type="number", format="float", example=45.678)
+     *                  )
+     *          )
      *     )
-     * )
      */
     public function store(Request $request): JsonResponse
     {
-        $validatedData = $request->validate([
-            'longitude' => 'required|numeric|min:-180|max:180',
-            'latitude' => 'required|numeric|min:-90|max:90',
-            'place' => 'required|string',
-            'city' => 'required|string',
-            'country' => 'required|string',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'place' => 'required|string',
+                'city' => 'required|string',
+                'country' => 'required|string',
+                'coordinates.longitude' => 'required|numeric|min:-180|max:180',
+                'coordinates.latitude' => 'required|numeric|min:-90|max:90',
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json(
+                [
+                    'errors' => 'Invalid input data',
+                    'details' => $e->errors()
+                ],
+                400
+            );
+        }
 
-        if (Address::where('place', $validatedData['place'])->where('city', $validatedData['city'])->where('country', $validatedData['country'])->exists()) {
-            return response()->json(['error' => 'Address already exists'], 409);
+
+        if (Address::where('longitude', $validatedData['coordinates.longitude'])
+            ->where('latitutde', $validatedData['coordinates.latitude'])
+            ->exists()
+        ) {
+            throw new AddressAlreadyExistsException();
         }
 
         $address = Address::create($validatedData);
