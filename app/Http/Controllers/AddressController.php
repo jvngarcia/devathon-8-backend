@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Address Controller
  *
@@ -39,43 +38,75 @@ class AddressController extends Controller
      * This method validates the incoming request data, checks if the address already exists, and creates a new address record if it does not.
      *
      * @param Request $request The incoming request containing the address data.
+     *
      * @return JsonResponse A JSON response indicating the success or failure of the address creation.
      *
+     *
      * @OA\Post(
-     *     path="/api/addresses",
+     *     path="/api/v1/addresses",
      *     summary="Create a new address",
-     *     tags={"Addresses"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="place", type="string"),
-     *             @OA\Property(property="city", type="string"),
-     *             @OA\Property(property="country", type="string"),
-     *             @OA\Property(property="coordinates", type="object",
-     *                 @OA\Property(property="longitude", type="number", format="float", minimum=-180, maximum=180),
-     *                 @OA\Property(property="latitude", type="number", format="float", minimum=-90, maximum=90)
-     *             )
+     * @OA\Parameter(
+     *         name="X-API-Key",
+     *         in="header",
+     *         description="API Key",
+     * @OA\Schema(
+     *             type="string"
      *         )
      *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Address created successfully",
-     *         @OA\JsonContent(
-     *         type="object",
-     *         @OA\Property(property="data", type="object",
-     *              @OA\Property(property="message", type="string", example="Address created successfully"),
-     *              @OA\Property(property="address", type="object",
-     *                  @OA\Property(property="id", type="integer", example=1),
-     *                  @OA\Property(property="place", type="string", example="Example Place"),
-     *                  @OA\Property(property="city", type="string", example="Example City"),
-     *                  @OA\Property(property="country", type="string", example="Example Country"),
-     *                  @OA\Property(property="coordinates", type="object",
-     *                      @OA\Property(property="longitude", type="number", format="float", example=123.456),
-     *                      @OA\Property(property="latitude", type="number", format="float", example=45.678)
-     *                  )
-     *          )
-     *     )
+     *     tags={"Addresses"},
+     * @OA\RequestBody(
+     *         required=true,
+     *         description="Address data",
+     * @OA\JsonContent(
+     *           required={"place", "city", "country", "coordinates"},
+     * @OA\Property(
+     *             property="place",
+     *             type="string",
+     *             example="My house"
+     *           ),
+     * @OA\Property(
+     *            property="city",
+     *            type="string",
+     *            example="My city"
+     *  ),
+     * @OA\Property(
+     *            property="country",
+     *            type="string",
+     *            example="My country"
+     *   ),
+     * @OA\Property(
+     *            property="coordinates", type="object",
+     * @OA\Property(
+     *            property="longitude",
+     *            type="number",
+     *            format="float",
+     *            example="0.0"
+     *   ),
+     * @OA\Property(
+     *            property="latitude",
+     *            type="number",
+     *            format="float",
+     *            example="0.0"
+     *   )
+     *  )
+     *  )
+     * ),
+     * @OA\Response(
+     *           response=201,
+     *           description="Address created successfully",
+     *           @OA\JsonContent(
+     *           @OA\Property(
+     *        property="message",
+     *        type="string",
+     *        example="Address created successfully"
+     *        ),
+     *        @OA\Property(
+     *        property="address",
+     *        type="object",
+     *        )
+     *  )
+     * )
+     * )
      */
     public function store(Request $request): JsonResponse
     {
@@ -127,8 +158,9 @@ class AddressController extends Controller
      * @return JsonResponse $data JsonResponse instance
      *
      * @OA\Get(
-     *     path="/v1/addresses/recent",
+     *     path="/api/v1/addresses/recent",
      *     summary="Get the last 5 addresses",
+     *     tags={"Addresses"},
      * @OA\Parameter(
      *         name="X-API-Key",
      *         in="header",
