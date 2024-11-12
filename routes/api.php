@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->middleware([EnsureApiKeyIsValid::class])->group(
     function () {
         Route::get('/status', [StatusController::class, 'index']);
+        Route::post('/addresses', [AddressController::class, 'store']);
         Route::get('/addresses/recent', [AddressController::class, 'show']);
     }
 );
@@ -19,5 +20,3 @@ Route::get(
         return $request->user();
     }
 )->middleware('auth:sanctum');
-
-Route::post('/adresses', [AddressController::class, 'store']);

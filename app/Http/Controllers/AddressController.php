@@ -40,7 +40,7 @@ class AddressController extends Controller
      *
      * @param Request $request The incoming request containing the address data.
      * @return JsonResponse A JSON response indicating the success or failure of the address creation.
-     * 
+     *
      * @OA\Post(
      *     path="/api/addresses",
      *     summary="Create a new address",
@@ -98,14 +98,22 @@ class AddressController extends Controller
         }
 
 
-        if (Address::where('longitude', $validatedData['coordinates.longitude'])
-            ->where('latitutde', $validatedData['coordinates.latitude'])
+        if (Address::where('longitude', $validatedData['coordinates']['longitude'])
+            ->where('latitude', $validatedData['coordinates']['latitude'])
             ->exists()
         ) {
             throw new AddressAlreadyExistsException();
         }
 
-        $address = Address::create($validatedData);
+        $address = Address::create(
+            [
+                'place' => $validatedData['place'],
+                'city' => $validatedData['city'],
+                'country' => $validatedData['country'],
+                'longitude' => $validatedData['coordinates']['longitude'],
+                'latitude' => $validatedData['coordinates']['latitude']
+            ]
+        );
 
         return response()->json([
             'message' => 'Address created successfully',
