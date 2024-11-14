@@ -114,8 +114,8 @@ class AddressController extends Controller
         try {
             $validatedData = $request->validate([
                 'place' => 'required|string',
-                'city' => 'required|string',
-                'country' => 'required|string',
+                'city' => 'nullable|string',
+                'country' => 'nullable|string',
                 'coordinates.longitude' => 'required|numeric|min:-180|max:180',
                 'coordinates.latitude' => 'required|numeric|min:-90|max:90',
             ]);
