@@ -35,8 +35,13 @@ class Address extends Model
      * @var array<string>
      */
     protected $fillable = [
-        'address'
+        'longitude',
+        'latitude',
+        'place',
+        'city',
+        'country',
     ];
+
 
     /**
      * Define primary key
@@ -44,4 +49,17 @@ class Address extends Model
      * @var string
      */
     protected $primaryKey = 'id';
+
+    /**
+     * Interact with the coordinates attribute
+     *
+     * @return void
+     */
+    public function coordinates(): array
+    {
+        return [
+            floatval($this->longitude),
+            floatval($this->latitude),
+        ];
+    }
 }
