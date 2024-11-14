@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Address Controller
  *
@@ -43,7 +44,7 @@ class AddressController extends Controller
      *
      *
      * @OA\Post(
-     *     path="/api/v1/addresses",
+     *     path="/v1/addresses",
      *     summary="Create a new address",
      * @OA\Parameter(
      *         name="X-API-Key",
@@ -158,7 +159,7 @@ class AddressController extends Controller
      * @return JsonResponse $data JsonResponse instance
      *
      * @OA\Get(
-     *     path="/api/v1/addresses/recent",
+     *     path="/v1/addresses/recent",
      *     summary="Get the last 5 addresses",
      *     tags={"Addresses"},
      * @OA\Parameter(
