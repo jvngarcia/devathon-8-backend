@@ -59,7 +59,8 @@ class AddressController extends Controller
      *         required=true,
      *         description="Address data",
      * @OA\JsonContent(
-     *           required={"place", "city", "country", "coordinates"},
+     *           required={"place", "coordinates"},
+     *           nullable={"city", "country"},
      * @OA\Property(
      *             property="place",
      *             type="string",
