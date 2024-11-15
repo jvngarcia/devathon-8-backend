@@ -4,27 +4,30 @@ This repository contains a base Laravel 11 project that implements a backend sys
 
 ## Requirements
 
-- PHP >= 8.2
-- Composer
-- Node.js >= 18.x
-- npm or yarn
-- MySQL >= 8.0 (or your preferred database)
-- Git
+-   PHP >= 8.2
+-   Composer
+-   Node.js >= 18.x
+-   npm or yarn
+-   MySQL >= 8.0 (or your preferred database)
+-   Git
 
 ## Installation
 
 1. Clone the repository
+
 ```bash
 git clone <repository-url>
 cd <project-folder>
 ```
 
 2. Install PHP dependencies
+
 ```bash
 composer install
 ```
 
 3. Install frontend dependencies
+
 ```bash
 npm install
 # or using yarn
@@ -32,6 +35,7 @@ yarn install
 ```
 
 4. Environment Setup
+
 ```bash
 # Copy the example environment file
 cp .env.example .env
@@ -41,6 +45,7 @@ php artisan key:generate
 ```
 
 5. Configure your `.env` file with your database credentials and other necessary settings
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -51,23 +56,27 @@ DB_PASSWORD=your_password
 ```
 
 6. Run database migrations
+
 ```bash
 php artisan migrate
 ```
 
 7. Create API KEY
+
 ```env
-APY_KEY=your_api_key
+API_KEY=your_api_key
 ```
 
 ## Running the Application
 
 1. Start the development server
+
 ```bash
-php artisan serve 
+php artisan serve
 ```
 
 2. Compile frontend assets
+
 ```bash
 # For development
 npm run dev
@@ -84,55 +93,63 @@ Your application should now be running at `http://localhost:8000`
 
 ## Migations commands
 
-- Run all migrations
+-   Run all migrations
+
 ```bash
 php artisan migrate
 ```
 
-- Rollback latest migration
+-   Rollback latest migration
+
 ```bash
 php artisan migrate:rollback
 ```
 
-- Re-create database
+-   Re-create database
+
 ```bash
 php artisan migrate:refresh
 ```
 
-- Rollback all migrations
+-   Rollback all migrations
+
 ```bash
 php artisan migrate:reset
 ```
 
 ## Documentation Commands
+
 ```bash
 php artisan l5-swagger:generate
 ```
 
 ## Additional Commands
 
-- Clear application cache
+-   Clear application cache
+
 ```bash
 php artisan cache:clear
 ```
 
-- Clear configuration cache
+-   Clear configuration cache
+
 ```bash
 php artisan config:clear
 ```
 
-- Run tests
+-   Run tests
+
 ```bash
 php artisan test
 ```
 
 ## Development Standards
 
-- Follow PSR-12 coding standards
-- Write meaningful commit messages
-- Use git flow for branching
-- Create feature branches for new development
-- Write tests for new features
+-   Follow PSR-12 coding standards
+-   Write meaningful commit messages
+-   Use git flow for branching
+-   Create feature branches for new development
+-   Write tests for new features
 
 ## Troubleshooting
 
@@ -143,6 +160,7 @@ If you encounter any issues:
 3. Make sure your database service is running
 4. Check the Laravel logs in `storage/logs`
 5. Clear all caches:
+
 ```bash
 php artisan cache:clear
 php artisan config:clear
