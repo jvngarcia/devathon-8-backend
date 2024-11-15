@@ -1,0 +1,164 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Devathon 8: Team 1",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/",
+            "description": "Localhost"
+        }
+    ],
+    "paths": {
+        "/api/v1/addresses": {
+            "post": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Create a new address",
+                "description": "Store a newly created resource in storage.\n\nThis method validates the incoming request data, checks if the address already exists, and creates a new address record if it does not.",
+                "operationId": "80d1b15a40b77b8584aec349bc414942",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Address data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "place",
+                                    "city",
+                                    "country",
+                                    "coordinates"
+                                ],
+                                "properties": {
+                                    "place": {
+                                        "type": "string",
+                                        "example": "My house"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "My city"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "example": "My country"
+                                    },
+                                    "coordinates": {
+                                        "properties": {
+                                            "longitude": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": "0.0"
+                                            },
+                                            "latitude": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": "0.0"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Address created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Address created successfully"
+                                        },
+                                        "address": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/addresses/recent": {
+            "get": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Get the last 5 addresses",
+                "description": "Get the last 5 addresses",
+                "operationId": "a50b8dbb710f0e7ffcfb20160cb09475",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/v1/status": {
+            "get": {
+                "summary": "Status API",
+                "description": "Status API",
+                "operationId": "00addfdbb6b7ac9684a6417eab82f1dc",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Addresses",
+            "description": "Addresses"
+        }
+    ]
+}
