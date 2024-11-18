@@ -19,9 +19,18 @@ class Letter extends Model
     'sender',
     'subject',
     'content',
-    'created_at',
     'read',
     'image'
+  ];
+
+  /**
+   * The attributes that should be cast.
+   * 
+   * @var array
+   */
+
+  protected $casts = [
+    'read' => 'boolean',
   ];
 
   /**
