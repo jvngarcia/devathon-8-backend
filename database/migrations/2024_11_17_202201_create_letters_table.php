@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('subject');
             $table->text('content');
             $table->boolean('read')->default(false);
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
