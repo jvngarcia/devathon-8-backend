@@ -29,7 +29,8 @@ class Letter extends Model
     'sender',
     'subject',
     'content',
-    'read'
+    'read',
+    'image_url'
   ];
 
   /**
