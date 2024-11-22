@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\LettersNotFoundException;
-use App\Http\Requests\SearchLettersRequest;
 use App\Http\Resources\LettersCollection;
 use App\Models\Letter;
 use Illuminate\Http\Request;
