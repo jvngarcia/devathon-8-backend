@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Address::factory(30)->create();
+
+        $this->call([
+            LetterSeeder::class,
+        ]);
     }
 }
