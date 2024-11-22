@@ -11,14 +11,14 @@
         }
     ],
     "paths": {
-        "/api/v1/addresses": {
+        "/v1/addresses": {
             "post": {
                 "tags": [
                     "Addresses"
                 ],
                 "summary": "Create a new address",
                 "description": "Store a newly created resource in storage.\n\nThis method validates the incoming request data, checks if the address already exists, and creates a new address record if it does not.",
-                "operationId": "80d1b15a40b77b8584aec349bc414942",
+                "operationId": "3fe8a40edfe1a3a4974c5ad8027bd176",
                 "parameters": [
                     {
                         "name": "X-API-Key",
@@ -37,8 +37,6 @@
                             "schema": {
                                 "required": [
                                     "place",
-                                    "city",
-                                    "country",
                                     "coordinates"
                                 ],
                                 "properties": {
@@ -70,7 +68,11 @@
                                         "type": "object"
                                     }
                                 },
-                                "type": "object"
+                                "type": "object",
+                                "nullable": [
+                                    "city",
+                                    "country"
+                                ]
                             }
                         }
                     }
@@ -98,14 +100,14 @@
                 }
             }
         },
-        "/api/v1/addresses/recent": {
+        "/v1/addresses/recent": {
             "get": {
                 "tags": [
                     "Addresses"
                 ],
                 "summary": "Get the last 5 addresses",
                 "description": "Get the last 5 addresses",
-                "operationId": "a50b8dbb710f0e7ffcfb20160cb09475",
+                "operationId": "94f2b546f6040970157da322ee5cc359",
                 "parameters": [
                     {
                         "name": "X-API-Key",
@@ -125,6 +127,135 @@
                     },
                     "401": {
                         "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/v1/letters": {
+            "get": {
+                "tags": [
+                    "Letters"
+                ],
+                "summary": "Get the latest 5 letters",
+                "description": "Display a listing of the letters.",
+                "operationId": "281a73133f54be66e45c6917717c6a61",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Latest 5 letters",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "letters"
+                                                    },
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "attributes": {
+                                                        "properties": {
+                                                            "sender": {
+                                                                "type": "string",
+                                                                "example": "John Doe"
+                                                            },
+                                                            "subject": {
+                                                                "type": "string",
+                                                                "example": "Hello"
+                                                            },
+                                                            "content": {
+                                                                "type": "string",
+                                                                "example": "Hello, how are you?"
+                                                            },
+                                                            "read": {
+                                                                "type": "boolean",
+                                                                "example": "false"
+                                                            },
+                                                            "image": {
+                                                                "type": "string",
+                                                                "example": "https://example.com/image.jpg"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2021-10-10T10:00:00.000000Z"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "links": {
+                                            "properties": {
+                                                "self": {
+                                                    "type": "string",
+                                                    "example": "link-value"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Letters not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": "404"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Not Found"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Letters not found."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -159,6 +290,10 @@
         {
             "name": "Addresses",
             "description": "Addresses"
+        },
+        {
+            "name": "Letters",
+            "description": "Letters"
         }
     ]
 }
