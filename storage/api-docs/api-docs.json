@@ -136,7 +136,7 @@
                 "tags": [
                     "Letters"
                 ],
-                "summary": "Get the latest 5 letters",
+                "summary": "List and obtain letters ",
                 "description": "Display a listing of the letters.",
                 "operationId": "281a73133f54be66e45c6917717c6a61",
                 "parameters": [
@@ -144,6 +144,28 @@
                         "name": "X-API-Key",
                         "in": "header",
                         "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filter by read status",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "read",
+                                "unread"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by sender, subject, content, or created_at",
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }

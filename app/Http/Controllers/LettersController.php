@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\LettersNotFoundException;
+use App\Http\Requests\SearchLettersRequest;
 use App\Http\Resources\LettersCollection;
 use App\Models\Letter;
 use Illuminate\Http\Request;
@@ -16,12 +17,31 @@ class LettersController extends Controller
      * 
      * @OA\Get(
      *      path="/v1/letters",
-     *      summary="Get the latest 5 letters",
+     *      summary="List and obtain letters ",
      *      tags={"Letters"},
      *      @OA\Parameter(
      *          name="X-API-Key",
      *          in="header",
      *          description="API Key",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="status",
+     *          in="query",
+     *          description="Filter by read status",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string",
+     *              enum={"read", "unread"}
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="search",
+     *          in="query",
+     *          description="Search by sender, subject, content, or created_at",
+     *          required=false,
      *          @OA\Schema(
      *              type="string"
      *          )
@@ -129,23 +149,31 @@ class LettersController extends Controller
      *    )
      * )          
      */
-    public function index(): LettersCollection
+    public function index(Request $request): LettersCollection
     {
-        $data = Letter::orderBy('created_at', 'desc')->paginate(20);
+        $query = Letter::query();
+
+        if ($request->has('status') && in_array($request->input('status'), ['read', 'unread'])) {
+            $query->where('read', $request->input('status') === 'read');
+        }
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+
+            $query->where('sender', 'like', "%$search%")
+                ->orWhere('subject', 'like', "%$search%")
+                ->orWhere('content', 'like', "%$search%")
+                ->orWhere('created_at', 'like', "%$search%");
+        }
+
+        $data = $query->orderBy('created_at', 'desc')
+            ->paginate(20);
 
         if ($data->isEmpty()) {
             throw new LettersNotFoundException();
         }
 
         return new LettersCollection($data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
