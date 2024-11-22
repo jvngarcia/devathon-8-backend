@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\LettersController;
 use App\Http\Controllers\StatusController;
 use App\Http\Middleware\EnsureApiKeyIsValid;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ Route::prefix('v1')->middleware([EnsureApiKeyIsValid::class])->group(
         Route::get('/status', [StatusController::class, 'index']);
         Route::post('/addresses', [AddressController::class, 'store']);
         Route::get('/addresses/recent', [AddressController::class, 'show']);
+
+        Route::get('/letters', [LettersController::class, 'index']);
     }
 );
 
