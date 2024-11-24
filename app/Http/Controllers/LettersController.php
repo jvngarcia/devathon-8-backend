@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\LettersNotFoundException;
+use App\Exceptions\InvalidLetterIdException;
 use App\Http\Resources\LettersCollection;
 use App\Models\Letter;
 use Illuminate\Http\Request;
@@ -192,19 +193,31 @@ class LettersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * @param Request $request
+     * @param string $id
+     * 
+     * @return [type]
      */
     public function update(Request $request, string $id)
     {
-        //
+        if( !is_numeric($id) ) {
+            throw new InvalidLetterIdException();
+        }
+
+        $letter = Letter::find($id);
+
+        if (is_null($letter)) {
+            throw new LettersNotFoundException();
+        }
+    
+        $letter->read = !$letter->read;
+    
+        $letter->save();
+    
+        return response()->json([
+            'message' => 'Letter status updated successfully.',
+            'data' => $letter
+        ], 200);
     }
 
     /**
