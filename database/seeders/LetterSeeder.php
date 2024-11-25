@@ -597,6 +597,8 @@ class LetterSeeder extends Seeder
             ],
         ];
 
-        Letter::insert($cards);
+        foreach ($cards as $card) {
+            Letter::create($card);
+        }
     }
 }
