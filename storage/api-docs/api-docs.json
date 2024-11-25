@@ -437,6 +437,123 @@
                 }
             }
         },
+        "/letters/{id}": {
+            "put": {
+                "tags": [
+                    "Letters"
+                ],
+                "summary": "Update the read status of a letter",
+                "description": "Toggles the 'read' field (true/false) of a letter by its ID.",
+                "operationId": "updateLetterReadStatus",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the letter",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Letter status updated successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "sender": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "subject": {
+                                                    "type": "string",
+                                                    "example": "Hello"
+                                                },
+                                                "content": {
+                                                    "type": "string",
+                                                    "example": "Hello, how are you?"
+                                                },
+                                                "read": {
+                                                    "type": "boolean",
+                                                    "example": "false"
+                                                },
+                                                "image_url": {
+                                                    "type": "string",
+                                                    "example": "https://example.com/image.jpg"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2021-10-10T10:00:00.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2021-10-10T10:00:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Letter not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Letter not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid Letter ID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/status": {
             "get": {
                 "summary": "Status API",
