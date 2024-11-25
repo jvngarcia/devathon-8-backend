@@ -14,6 +14,7 @@ Route::prefix('v1')->middleware([EnsureApiKeyIsValid::class])->group(
         Route::get('/addresses/recent', [AddressController::class, 'show']);
 
         Route::get('/letters', [LettersController::class, 'index']);
+        Route::put('/letter/{id}', [LettersController::class, 'update']);
     }
 );
 
