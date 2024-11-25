@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('email')->unique();
-            $table->string('age');
+            $table->integer('age');
             $table->string('address');
             $table->float('height');
             $table->softDeletes();
