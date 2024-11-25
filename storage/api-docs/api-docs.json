@@ -131,6 +131,161 @@
                 }
             }
         },
+        "/v1/labor-registration": {
+            "post": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Create a new labor registration",
+                "description": "create a new labor registration",
+                "operationId": "d07d66641572397cf8285061fd5e114b",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "image",
+                                    "name",
+                                    "email",
+                                    "age",
+                                    "address",
+                                    "height"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "description": "Image file",
+                                        "type": "string",
+                                        "format": "binary",
+                                        "example": "image.jpg"
+                                    },
+                                    "name": {
+                                        "description": "Name of the labor",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "Email of the labor",
+                                        "type": "string",
+                                        "example": "exampleexample.com"
+                                    },
+                                    "age": {
+                                        "description": "Age of the labor",
+                                        "type": "integer",
+                                        "example": "25"
+                                    },
+                                    "address": {
+                                        "description": "Address of the labor",
+                                        "type": "string",
+                                        "example": "1234 Main St"
+                                    },
+                                    "height": {
+                                        "description": "Height of the labor",
+                                        "type": "number",
+                                        "example": "1.75"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Labor registration created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Labor registration created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "image": {
+                                                    "description": "Image of the labor",
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/storage/image/image.jpg"
+                                                },
+                                                "name": {
+                                                    "description": "Name of the labor",
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "description": "Email of the labor",
+                                                    "type": "string",
+                                                    "example": "exampleexample.com"
+                                                },
+                                                "age": {
+                                                    "description": "Age of the labor",
+                                                    "type": "integer",
+                                                    "example": "25"
+                                                },
+                                                "address": {
+                                                    "description": "Address of the labor",
+                                                    "type": "string",
+                                                    "example": "1234 Main St"
+                                                },
+                                                "height": {
+                                                    "description": "Height of the labor",
+                                                    "type": "number",
+                                                    "example": "1.75"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "height": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The height must be a number."
+                                                    }
+                                                },
+                                                "image": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The image must be an image."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/letters": {
             "get": {
                 "tags": [
@@ -429,6 +584,10 @@
         {
             "name": "Addresses",
             "description": "Addresses"
+        },
+        {
+            "name": "Labor-Registration",
+            "description": "Labor-Registration"
         },
         {
             "name": "Letters",
