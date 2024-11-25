@@ -177,100 +177,100 @@ class LettersController extends Controller
     }
 
     /**
-    * @param Request $request
-    * @param string $id
-    * 
-    * @OA\Put(
-    *     path="/letters/{id}",
-    *     summary="Update the read status of a letter",
-    *     description="Toggles the 'read' field (true/false) of a letter by its ID.",
-    *     operationId="updateLetterReadStatus",
-    *     tags={"Letters"},
-    *     @OA\Parameter(
-    *          name="X-API-Key",
-    *          in="header",
-    *          description="API Key",
-    *          @OA\Schema(
-    *              type="string"
-    *          )
-    *      ),
-    *     @OA\Parameter(
-    *         name="id",
-    *         in="path",
-    *         description="The ID of the letter",
-    *         required=true,
-    *         @OA\Schema(
-    *             type="integer",
-    *             example=1
-    *         )
-    *     ),
-    *     @OA\Response(
-    *         response=200,
-    *         description="Status updated successfully",
-    *         @OA\JsonContent(
-    *             type="object",
-    *             @OA\Property(property="message", type="string", example="Letter status updated successfully."),
-    *             @OA\Property(property="data", type="object",
-    *                @OA\Property(
-    *                    property="id", 
-    *                   type="integer", 
-    *                    example=1
-    *                ),
-    *                @OA\Property(
-    *                    property="sender",
-    *                    type="string",
-    *                    example="John Doe"
-    *                ),
-    *                @OA\Property(
-    *                    property="subject",
-    *                     type="string",
-    *                    example="Hello"
-    *                ),
-    *                @OA\Property(
-    *                    property="content",
-    *                    type="string",
-    *                    example="Hello, how are you?"
-    *                ),
-    *                @OA\Property(
-    *                    property="read",
-    *                    type="boolean",
-    *                    example="false"
-    *                ),
-    *                @OA\Property(
-    *                    property="image_url",
-    *                    type="string",
-    *                    example="https://example.com/image.jpg"
-    *                ),
-    *                @OA\Property(
-    *                    property="created_at",
-    *                    type="string",
-    *                    example="2021-10-10T10:00:00.000000Z"
-    *                ),
-    *                @OA\Property(
-    *                    property="updated_at",
-    *                    type="string",
-    *                    example="2021-10-10T10:00:00.000000Z"
-    *                ),
-    *             )
-    *         )
-    *     ),
-    *     @OA\Response(
-    *         response=404,
-    *         description="Letter not found",
-    *         @OA\JsonContent(
-    *             type="object",
-    *             @OA\Property(property="message", type="string", example="Letter not found.")
-    *         )
-    *     ),
-    *     @OA\Response(
-    *         response=406,
-    *         description="Invalid ID",
-    *         @OA\JsonContent(
-    *             type="object",
-    *             @OA\Property(property="message", type="string", example="Invalid Letter ID.")
-    *         )
-    *     )
-    * )
+     * @param Request $request
+     * @param string $id
+     * 
+     * @OA\Put(
+     *     path="/letters/{id}",
+     *     summary="Update the read status of a letter",
+     *     description="Toggles the 'read' field (true/false) of a letter by its ID.",
+     *     operationId="updateLetterReadStatus",
+     *     tags={"Letters"},
+     *     @OA\Parameter(
+     *          name="X-API-Key",
+     *          in="header",
+     *          description="API Key",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="The ID of the letter",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             example=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Status updated successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="Letter status updated successfully."),
+     *             @OA\Property(property="data", type="object",
+     *                @OA\Property(
+     *                    property="id", 
+     *                   type="integer", 
+     *                    example=1
+     *                ),
+     *                @OA\Property(
+     *                    property="sender",
+     *                    type="string",
+     *                    example="John Doe"
+     *                ),
+     *                @OA\Property(
+     *                    property="subject",
+     *                     type="string",
+     *                    example="Hello"
+     *                ),
+     *                @OA\Property(
+     *                    property="content",
+     *                    type="string",
+     *                    example="Hello, how are you?"
+     *                ),
+     *                @OA\Property(
+     *                    property="read",
+     *                    type="boolean",
+     *                    example="false"
+     *                ),
+     *                @OA\Property(
+     *                    property="image_url",
+     *                    type="string",
+     *                    example="https://example.com/image.jpg"
+     *                ),
+     *                @OA\Property(
+     *                    property="created_at",
+     *                    type="string",
+     *                    example="2021-10-10T10:00:00.000000Z"
+     *                ),
+     *                @OA\Property(
+     *                    property="updated_at",
+     *                    type="string",
+     *                    example="2021-10-10T10:00:00.000000Z"
+     *                ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Letter not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="Letter not found.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=406,
+     *         description="Invalid ID",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="Invalid Letter ID.")
+     *         )
+     *     )
+     * )
     */
     public function update(Request $request, string $id)
     {
@@ -292,29 +292,5 @@ class LettersController extends Controller
             'message' => 'Letter status updated successfully.',
             'data' => $letter
         ], 200);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 }
