@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Address::factory(30)->create();
+        // Address::factory(30)->create();
 
         $this->call([
             LetterSeeder::class,
