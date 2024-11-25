@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Labor Registration Controller
+ *
+ * PHP version 8
+ *
+ * @category Controller
+ * @package  Controller\LaborRegistration
+ * @author   Angel García <angelgarciaweb@gmail.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://github.com/jvngarcia/devathon-8-backend.git
+ */
+
 namespace App\Http\Controllers;
 
 use App\Exceptions\LettersNotFoundException;
@@ -7,10 +19,21 @@ use App\Http\Resources\LettersCollection;
 use App\Models\Letter;
 use Illuminate\Http\Request;
 
+/**
+ * Labor Registration Controller
+ *
+ * @category Controller
+ * @package  Controller\LaborRegistration
+ * @author   Angel García <angelgarciaweb@gmail.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://github.com/jvngarcia/devathon-8-backend.git
+ */
 class LettersController extends Controller
 {
     /**
      * Display a listing of the letters.
+     * 
+     * @param Request $request Request
      * 
      * @return LettersCollection $data Collection of letters
      * 

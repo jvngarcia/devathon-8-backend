@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\LaborRegistrationController;
 use App\Http\Controllers\LettersController;
 use App\Http\Controllers\StatusController;
 use App\Http\Middleware\EnsureApiKeyIsValid;
@@ -14,6 +15,8 @@ Route::prefix('v1')->middleware([EnsureApiKeyIsValid::class])->group(
         Route::get('/addresses/recent', [AddressController::class, 'show']);
 
         Route::get('/letters', [LettersController::class, 'index']);
+
+        Route::post('/labor-registration', [LaborRegistrationController::class, 'create'])->name('labor-registration.create');
     }
 );
 
