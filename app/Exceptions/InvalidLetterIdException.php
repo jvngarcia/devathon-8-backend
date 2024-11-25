@@ -41,7 +41,7 @@ class InvalidLetterIdException extends Exception
                     [
                         'status' => 406,
                         'title' => 'Invalid Id',
-                        'detail' => 'Provided Id didn´t match standart.',
+                        'detail' => 'Provided Id didn´t match standard.',
                     ],
                 ],
             ],
