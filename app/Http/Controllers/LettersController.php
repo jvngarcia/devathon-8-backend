@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Labor Registration Controller
+ * Letters Controller
  *
  * PHP version 8
  *
  * @category Controller
- * @package  Controller\LaborRegistration
+ * @package  Controller\Letters
  * @author   Angel García <angelgarciaweb@gmail.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/jvngarcia/devathon-8-backend.git
@@ -20,10 +20,10 @@ use App\Models\Letter;
 use Illuminate\Http\Request;
 
 /**
- * Labor Registration Controller
+ * Letters Controller
  *
  * @category Controller
- * @package  Controller\LaborRegistration
+ * @package  Controller\Letters
  * @author   Angel García <angelgarciaweb@gmail.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/jvngarcia/devathon-8-backend.git

@@ -1,9 +1,30 @@
 <?php
 
+/**
+ * Labor Registration Request
+ *
+ * PHP version 8
+ *
+ * @category Request
+ * @package  Request\LaborRegistration
+ * @author   Angel García <angelgarciaweb@gmail.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://github.com/jvngarcia/devathon-8-backend.git
+ */
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * LaborRegistrationRequest
+ *
+ * @category Request
+ * @package  Request\LaborRegistration
+ * @author   Angel García <angelgarciaweb@gmail.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://github.com/jvngarcia/devathon-8-backend.git
+ */
 class LaborRegistrationRequest extends FormRequest
 {
     /**

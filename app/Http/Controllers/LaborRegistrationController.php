@@ -24,7 +24,7 @@ use Illuminate\Http\Request;
  * LaborRegistrationController
  *
  * @category Controller
- * @package  Controller\Status
+ * @package  Controller\LaborRegistration
  * @author   Angel García <angelgarciaweb@gmail.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/jvngarcia/devathon-8-backend.git
