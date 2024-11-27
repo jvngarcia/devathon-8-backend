@@ -14,6 +14,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\LaborNotFoundException;
+use App\Exceptions\InvalidIdException;
 use App\Http\Requests\LaborRegistrationRequest;
 use App\Models\LaborRegistration;
 use Illuminate\Database\Eloquent\Casts\Json;
@@ -200,5 +202,25 @@ class LaborRegistrationController extends Controller
                 'height' => $data->height,
             ]
         ], 201);
+    }
+
+    public function destroy(string $id)
+    {
+        if( !is_numeric($id) ) {
+            throw new InvalidIdException();
+        }
+
+        $data = LaborRegistration::find($id);
+
+        if (is_null($data)) {
+            throw new LaborNotFoundException();
+        }
+    
+        $data->delete();
+    
+        return response()->json([
+            'message' => 'Elf successfully deleted.',
+            'data' => $data
+        ], 200);
     }
 }
