@@ -286,6 +286,130 @@
                 }
             }
         },
+        "/v1/labor-registration/list": {
+            "get": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Get a paginated list of labor registrations (elves)",
+                "description": "Retrieves a paginated list of labor registrations (elves).",
+                "operationId": "d372ce0e449e6f6091e07e90f13051bd",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "http://localhost:8000/storage/image/image.jpg"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "John Doe"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "example@example.com"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": 25
+                                                    },
+                                                    "address": {
+                                                        "type": "string",
+                                                        "example": "1234 Main St"
+                                                    },
+                                                    "height": {
+                                                        "type": "number",
+                                                        "example": 1.75
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "current_page": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "total": {
+                                            "type": "integer",
+                                            "example": 50
+                                        },
+                                        "per_page": {
+                                            "type": "integer",
+                                            "example": 20
+                                        },
+                                        "last_page": {
+                                            "type": "integer",
+                                            "example": 3
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/v1/labor-registration/list?page=2"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No elves found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "There's no elves hired"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Exception message here"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/letters": {
             "get": {
                 "tags": [
