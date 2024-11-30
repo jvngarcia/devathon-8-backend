@@ -246,15 +246,16 @@ class LaborRegistrationController extends Controller
      *          response=404,
      *          description="No elves found",
      *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="There's no elves hired")
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=500,
-     *          description="Internal Server Error",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="Internal Server Error"),
-     *              @OA\Property(property="error", type="string", example="Exception message here")
+     *              type="object",
+     *              @OA\Property(
+     *                  property="errors",
+     *                  type="array",
+     *                  @OA\Items(
+     *                      @OA\Property(property="status", type="integer", example=404),
+     *                      @OA\Property(property="title", type="string", example="Not Found"),
+     *                      @OA\Property(property="detail", type="string", example="No elves found.")
+     *                  )
+     *              )
      *          )
      *      )
      * )
@@ -264,16 +265,12 @@ class LaborRegistrationController extends Controller
 
     public function index(): JsonResponse
     {
-        try {
-            $data = LaborRegistration::orderBy('created_at', 'desc')->paginate(20);
+        $data = LaborRegistration::orderBy('created_at', 'desc')->paginate(20);
 
-            if ($data->isEmpty()) {
-                throw new LaborRegistrationNotFoundException();
-            }
-
-            return response()->json($data, 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
+        if ($data->isEmpty()) {
+            throw new LaborRegistrationNotFoundException();
         }
+
+        return response()->json($data, 200);
     }
 }
