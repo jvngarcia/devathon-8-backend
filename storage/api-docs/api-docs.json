@@ -377,29 +377,25 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "There's no elves hired"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Internal Server Error"
-                                        },
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Exception message here"
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": 404
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Not Found"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "No elves found."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
