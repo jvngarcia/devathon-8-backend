@@ -291,9 +291,30 @@
                 "tags": [
                     "Labor-Registration"
                 ],
-                "summary": "Get a paginated list of labor registrations (elves)",
-                "description": "Retrieves a paginated list of labor registrations (elves).",
+                "summary": "Retrieve a paginated list of labor registrations (elves)",
+                "description": "Retrieve a paginated list of labor registrations (elves).",
                 "operationId": "d372ce0e449e6f6091e07e90f13051bd",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to retrieve",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "example": 1
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -372,30 +393,51 @@
                         }
                     },
                     "404": {
-                        "description": "No elves found",
+                        "description": "Resource not found",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "errors": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "integer",
-                                                        "example": 404
-                                                    },
-                                                    "title": {
-                                                        "type": "string",
-                                                        "example": "Not Found"
-                                                    },
-                                                    "detail": {
-                                                        "type": "string",
-                                                        "example": "No elves found."
-                                                    }
+                                            "properties": {
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 404
                                                 },
-                                                "type": "object"
-                                            }
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Not Found"
+                                                },
+                                                "detail": {
+                                                    "type": "string",
+                                                    "example": "Resource not found."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "page": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The page field must be an integer and at least 1."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"

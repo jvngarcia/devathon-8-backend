@@ -33,7 +33,7 @@ class LaborRegistrationNotFoundException extends Exception
           [
             'status' => 404,
             'title' => 'Not Found',
-            'detail' => 'No elves found.',
+            'detail' => 'Resource not found.',
           ],
         ],
       ],
