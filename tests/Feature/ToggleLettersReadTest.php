@@ -15,6 +15,8 @@
 namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
+
+use App\Models\Letter;
 use Tests\TestCase;
 
 /**
@@ -33,8 +35,10 @@ class ToggleLettersReadTest extends TestCase
      *
      * @return void
      */
-    public function testIncorrectId(): void
+    public function testCorrectId(): void
     {
+        Letter::factory()->count(10)->create();
+
         $response = $this->get(
             '/api/v1/letter/1',
             ['X-Api-Key' => env('API_KEY')]
@@ -63,7 +67,7 @@ class ToggleLettersReadTest extends TestCase
      *
      * @return void
      */
-    public function testIncorrectId(): void
+    public function testUnexistingId(): void
     {
         $response = $this->get(
             '/api/v1/letter/9999',
