@@ -283,7 +283,7 @@ class LaborRegistrationController extends Controller
      *         )
      *     ),
      *     @OA\Response(
-     *         response=400,
+     *         response=406,
      *         description="Invalid ID",
      *         @OA\JsonContent(
      *             type="object",
