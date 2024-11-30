@@ -14,11 +14,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\LaborRegistrationNotFoundException;
 use App\Http\Requests\LaborRegistrationRequest;
 use App\Models\LaborRegistration;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Js;
 
 /**
  * LaborRegistrationController
@@ -200,5 +202,75 @@ class LaborRegistrationController extends Controller
                 'height' => $data->height,
             ]
         ], 201);
+    }
+
+
+
+    /**
+     * Retrieves a paginated list of labor registrations (elves).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * 
+     * @OA\Get(
+     *      path="/v1/labor-registration/list",
+     *      summary="Get a paginated list of labor registrations (elves)",
+     *      tags={"Labor-Registration"},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(
+     *                      @OA\Property(property="image", type="string", example="http://localhost:8000/storage/image/image.jpg"),
+     *                      @OA\Property(property="name", type="string", example="John Doe"),
+     *                      @OA\Property(property="email", type="string", example="example@example.com"),
+     *                      @OA\Property(property="age", type="integer", example=25),
+     *                      @OA\Property(property="address", type="string", example="1234 Main St"),
+     *                      @OA\Property(property="height", type="number", example=1.75),
+     *                      @OA\Property(property="created_at", type="string", example="2023-05-01 12:00:00"),
+     *                      @OA\Property(property="updated_at", type="string", example="2023-05-01 12:00:00"),
+     *                      @OA\Property(property="id", type="integer", example=1)
+     *                  )
+     *              ),
+     *              @OA\Property(property="current_page", type="integer", example=1),
+     *              @OA\Property(property="total", type="integer", example=50),
+     *              @OA\Property(property="per_page", type="integer", example=20),
+     *              @OA\Property(property="last_page", type="integer", example=3),
+     *              @OA\Property(property="next_page_url", type="string", example="http://localhost:8000/api/v1/labor-registration/list?page=2")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="No elves found",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="errors",
+     *                  type="array",
+     *                  @OA\Items(
+     *                      @OA\Property(property="status", type="integer", example=404),
+     *                      @OA\Property(property="title", type="string", example="Not Found"),
+     *                      @OA\Property(property="detail", type="string", example="No elves found.")
+     *                  )
+     *              )
+     *          )
+     *      )
+     * )
+     */
+
+
+
+    public function index(): JsonResponse
+    {
+        $data = LaborRegistration::orderBy('created_at', 'desc')->paginate(20);
+
+        if ($data->isEmpty()) {
+            throw new LaborRegistrationNotFoundException();
+        }
+
+        return response()->json($data, 200);
     }
 }
