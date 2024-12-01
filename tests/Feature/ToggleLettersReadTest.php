@@ -15,6 +15,9 @@
 namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
+
+use App\Models\Letter;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -28,14 +31,27 @@ use Tests\TestCase;
  */
 class ToggleLettersReadTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withHeaders([
+            'X-Api-Key' => env('API_KEY'),
+        ]);
+    }
+
     /**
      * Tries to toggle a correct Id card.
      *
      * @return void
      */
-    public function testIncorrectId(): void
+    public function testCorrectId(): void
     {
-        $response = $this->get(
+        Letter::factory()->count(10)->create();
+
+        $response = $this->put(
             '/api/v1/letter/1',
             ['X-Api-Key' => env('API_KEY')]
         );
@@ -50,7 +66,7 @@ class ToggleLettersReadTest extends TestCase
      */
     public function testIncorrectId(): void
     {
-        $response = $this->get(
+        $response = $this->put(
             '/api/v1/letter/uno',
             ['X-Api-Key' => env('API_KEY')]
         );
@@ -63,9 +79,9 @@ class ToggleLettersReadTest extends TestCase
      *
      * @return void
      */
-    public function testIncorrectId(): void
+    public function testUnexistingId(): void
     {
-        $response = $this->get(
+        $response = $this->put(
             '/api/v1/letter/9999',
             ['X-Api-Key' => env('API_KEY')]
         );
