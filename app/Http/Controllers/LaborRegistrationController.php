@@ -426,7 +426,7 @@ class LaborRegistrationController extends Controller
 
         $data = LaborRegistration::find($id);
 
-        if ($data->isEmpty()) {
+        if (!$data) {
             throw new LaborRegistrationNotFoundException();
         }
 
