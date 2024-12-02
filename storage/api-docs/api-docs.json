@@ -286,146 +286,6 @@
                 }
             }
         },
-
-        "/labor-registration/{id}": {
-            "delete": {
-                "tags": [
-                    "Labor-Registration"
-                ],
-                "summary": "Delete a labor registration",
-                "description": "Deletes a labor registration by its ID. Throws an error if the ID is invalid or the resource does not exist.",
-                "operationId": "deleteLaborRegistration",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of the labor registration to delete",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": 1
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Labor registration deleted successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Elf successfully deleted."
-                                        },
-                                        "data": {
-                                            "properties": {
-                                                "image": {
-                                                    "description": "Image of the labor",
-                                                    "type": "string",
-                                                    "example": "http://localhost:8000/storage/image/image.jpg"
-                                                },
-                                                "name": {
-                                                    "description": "Name of the labor",
-                                                    "type": "string",
-                                                    "example": "John Doe"
-                                                },
-                                                "email": {
-                                                    "description": "Email of the labor",
-                                                    "type": "string",
-                                                    "example": "example@example.com"
-                                                },
-                                                "age": {
-                                                    "description": "Age of the labor",
-                                                    "type": "integer",
-                                                    "example": 25
-                                                },
-                                                "address": {
-                                                    "description": "Address of the labor",
-                                                    "type": "string",
-                                                    "example": "1234 Main St"
-                                                },
-                                                "height": {
-                                                    "description": "Height of the labor",
-                                                    "type": "number",
-                                                    "example": 1.75
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Labor registration not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "integer",
-                                                        "example": 404
-                                                    },
-                                                    "title": {
-                                                        "type": "string",
-                                                        "example": "Not Found"
-                                                    },
-                                                    "detail": {
-                                                        "type": "string",
-                                                        "example": "Elf not found."
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid ID",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "status": {
-                                                        "type": "integer",
-                                                        "example": 406
-                                                    },
-                                                    "title": {
-                                                        "type": "string",
-                                                        "example": "Invalid Id"
-                                                    },
-                                                    "detail": {
-                                                        "type": "string",
-                                                        "example": "Provided Id didn’t match standard."
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/v1/labor-registration/list": {
             "get": {
                 "tags": [
@@ -578,6 +438,294 @@
                                                 }
                                             },
                                             "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/labor-registration/{id}": {
+            "get": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Retrieve a labor registrations (elves)",
+                "description": "Retrieve a labor registrations (elves).",
+                "operationId": "912b5db446c46a74c35d40eac5620ec4",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the labor registration",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "http://localhost:8000/storage/image/image.jpg"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "John Doe"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "example@example.com"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": 25
+                                                    },
+                                                    "address": {
+                                                        "type": "string",
+                                                        "example": "1234 Main St"
+                                                    },
+                                                    "height": {
+                                                        "type": "number",
+                                                        "example": 1.75
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 404
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Not Found"
+                                                },
+                                                "detail": {
+                                                    "type": "string",
+                                                    "example": "Resource not found."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": 406
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Invalid Id"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Provided Id didn’t match standard."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/labor-registration/{id}": {
+            "delete": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Delete a labor registration",
+                "description": "Deletes a labor registration by its ID. Throws an error if the ID is invalid or the resource does not exist.",
+                "operationId": "deleteLaborRegistration",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the labor registration to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Labor registration deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Elf successfully deleted."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "image": {
+                                                    "description": "Image of the labor",
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/storage/image/image.jpg"
+                                                },
+                                                "name": {
+                                                    "description": "Name of the labor",
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "description": "Email of the labor",
+                                                    "type": "string",
+                                                    "example": "example@example.com"
+                                                },
+                                                "age": {
+                                                    "description": "Age of the labor",
+                                                    "type": "integer",
+                                                    "example": 25
+                                                },
+                                                "address": {
+                                                    "description": "Address of the labor",
+                                                    "type": "string",
+                                                    "example": "1234 Main St"
+                                                },
+                                                "height": {
+                                                    "description": "Height of the labor",
+                                                    "type": "number",
+                                                    "example": 1.75
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Labor registration not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": 404
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Not Found"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Elf not found."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": 406
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Invalid Id"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Provided Id didn’t match standard."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"

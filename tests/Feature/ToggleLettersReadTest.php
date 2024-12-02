@@ -50,9 +50,10 @@ class ToggleLettersReadTest extends TestCase
     public function testCorrectId(): void
     {
         Letter::factory()->count(10)->create();
+        $letter = Letter::factory()->create();
 
         $response = $this->put(
-            '/api/v1/letter/1',
+            "/api/v1/letter/$letter->id",
             ['X-Api-Key' => env('API_KEY')]
         );
 
