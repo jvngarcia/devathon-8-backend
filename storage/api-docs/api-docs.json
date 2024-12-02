@@ -13,7 +13,9 @@
     "paths": {
         "/v1/addresses": {
             "post": {
-                "tags": ["Addresses"],
+                "tags": [
+                    "Addresses"
+                ],
                 "summary": "Create a new address",
                 "description": "Store a newly created resource in storage.\n\nThis method validates the incoming request data, checks if the address already exists, and creates a new address record if it does not.",
                 "operationId": "3fe8a40edfe1a3a4974c5ad8027bd176",
@@ -35,8 +37,6 @@
                             "schema": {
                                 "required": [
                                     "place",
-                                    "city",
-                                    "country",
                                     "coordinates"
                                 ],
                                 "properties": {
@@ -69,7 +69,10 @@
                                     }
                                 },
                                 "type": "object",
-                                "nullable": ["city", "country"]
+                                "nullable": [
+                                    "city",
+                                    "country"
+                                ]
                             }
                         }
                     }
@@ -99,7 +102,9 @@
         },
         "/v1/addresses/recent": {
             "get": {
-                "tags": ["Addresses"],
+                "tags": [
+                    "Addresses"
+                ],
                 "summary": "Get the last 5 addresses",
                 "description": "Get the last 5 addresses",
                 "operationId": "94f2b546f6040970157da322ee5cc359",
@@ -128,7 +133,9 @@
         },
         "/v1/labor-registration": {
             "post": {
-                "tags": ["Labor-Registration"],
+                "tags": [
+                    "Labor-Registration"
+                ],
                 "summary": "Create a new labor registration",
                 "description": "create a new labor registration",
                 "operationId": "d07d66641572397cf8285061fd5e114b",
@@ -281,7 +288,9 @@
         },
         "/v1/labor-registration/list": {
             "get": {
-                "tags": ["Labor-Registration"],
+                "tags": [
+                    "Labor-Registration"
+                ],
                 "summary": "Retrieve a paginated list of labor registrations (elves)",
                 "description": "Retrieve a paginated list of labor registrations (elves).",
                 "operationId": "d372ce0e449e6f6091e07e90f13051bd",
@@ -441,7 +450,9 @@
         },
         "/v1/labor-registration/{id}": {
             "get": {
-                "tags": ["Labor-Registration"],
+                "tags": [
+                    "Labor-Registration"
+                ],
                 "summary": "Retrieve a labor registrations (elves)",
                 "description": "Retrieve a labor registrations (elves).",
                 "operationId": "912b5db446c46a74c35d40eac5620ec4",
@@ -588,7 +599,9 @@
         },
         "/labor-registration/{id}": {
             "delete": {
-                "tags": ["Labor-Registration"],
+                "tags": [
+                    "Labor-Registration"
+                ],
                 "summary": "Delete a labor registration",
                 "description": "Deletes a labor registration by its ID. Throws an error if the ID is invalid or the resource does not exist.",
                 "operationId": "deleteLaborRegistration",
@@ -725,7 +738,9 @@
         },
         "/v1/letters": {
             "get": {
-                "tags": ["Letters"],
+                "tags": [
+                    "Letters"
+                ],
                 "summary": "List and obtain letters ",
                 "description": "Display a listing of the letters.",
                 "operationId": "281a73133f54be66e45c6917717c6a61",
@@ -745,7 +760,10 @@
                         "required": false,
                         "schema": {
                             "type": "string",
-                            "enum": ["read", "unread"]
+                            "enum": [
+                                "read",
+                                "unread"
+                            ]
                         }
                     },
                     {
@@ -871,7 +889,9 @@
         },
         "/letters/{id}": {
             "put": {
-                "tags": ["Letters"],
+                "tags": [
+                    "Letters"
+                ],
                 "summary": "Update the read status of a letter",
                 "description": "Toggles the 'read' field (true/false) of a letter by its ID.",
                 "operationId": "updateLetterReadStatus",
