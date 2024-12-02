@@ -344,17 +344,6 @@ class LaborRegistrationController extends Controller
      *              type="string"
      *          )
      *      ),
-     *     @OA\Parameter(
-     *         name="page",
-     *         in="query",
-     *         description="The page number to retrieve",
-     *         required=false,
-     *         @OA\Schema(
-     *             type="integer",
-     *             example=1,
-     *             minimum=1
-     *         )
-     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
@@ -439,6 +428,18 @@ class LaborRegistrationController extends Controller
             throw new LaborRegistrationNotFoundException();
         }
 
-        return response()->json($data, 200);
+        $urlImage = url('storage/image/' . $data->image);
+
+        return response()->json([
+            'image' => $urlImage,
+            'name' => $data->name,
+            'email' => $data->email,
+            'age' => $data->age,
+            'address' => $data->address,
+            'height' => $data->height,
+            'created_at' => $data->created_at,
+            'updated_at' => $data->updated_at,
+            'id' => $data->id,
+        ], 200);
     }
 }
