@@ -334,7 +334,7 @@ class LaborRegistrationController extends Controller
      * 
      * @OA\Get(
      *     path="/v1/labor-registration/{id}",
-     *     summary="Retrieve a paginated list of labor registrations (elves)",
+     *     summary="Retrieve a labor registrations (elves)",
      *     tags={"Labor-Registration"},
      *     @OA\Parameter(
      *          name="X-API-Key",
@@ -364,11 +364,6 @@ class LaborRegistrationController extends Controller
      *                     @OA\Property(property="id", type="integer", example=1)
      *                 )
      *             ),
-     *             @OA\Property(property="current_page", type="integer", example=1),
-     *             @OA\Property(property="total", type="integer", example=50),
-     *             @OA\Property(property="per_page", type="integer", example=20),
-     *             @OA\Property(property="last_page", type="integer", example=3),
-     *             @OA\Property(property="next_page_url", type="string", example="http://localhost:8000/api/v1/labor-registration/list?page=2")
      *         )
      *     ),
      *     @OA\Response(
@@ -396,24 +391,6 @@ class LaborRegistrationController extends Controller
      *             )
      *         )
      *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation Error",
-     *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="errors",
-     *                 type="object",
-     *                 @OA\Property(
-     *                     property="page",
-     *                     type="array",
-     *                     @OA\Items(
-     *                         type="string",
-     *                         example="The page field must be an integer and at least 1."
-     *                     )
-     *                 )
-     *             )
-     *         )
-     *     )
      * )
      */
     public function show($id): JsonResponse
@@ -431,15 +408,19 @@ class LaborRegistrationController extends Controller
         $urlImage = url('storage/image/' . $data->image);
 
         return response()->json([
-            'image' => $urlImage,
-            'name' => $data->name,
-            'email' => $data->email,
-            'age' => $data->age,
-            'address' => $data->address,
-            'height' => $data->height,
-            'created_at' => $data->created_at,
-            'updated_at' => $data->updated_at,
-            'id' => $data->id,
+            'data' => [
+                [
+                    'image' => $urlImage,
+                    'name' => $data->name,
+                    'email' => $data->email,
+                    'age' => $data->age,
+                    'address' => $data->address,
+                    'height' => $data->height,
+                    'created_at' => $data->created_at,
+                    'updated_at' => $data->updated_at,
+                    'id' => $data->id,
+                ]
+            ]
         ], 200);
     }
 }
