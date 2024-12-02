@@ -26,7 +26,7 @@ use Illuminate\Http\JsonResponse;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/jvngarcia/devathon-8-backend.git
  */
-class InvalidLetterIdException extends Exception
+class InvalidIdException extends Exception
 {
     /**
      * Render the exception as an HTTP response.

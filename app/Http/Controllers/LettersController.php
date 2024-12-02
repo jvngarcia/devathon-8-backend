@@ -15,7 +15,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\LettersNotFoundException;
-use App\Exceptions\InvalidLetterIdException;
+use App\Exceptions\InvalidIdException;
 use App\Http\Resources\LettersCollection;
 use App\Models\Letter;
 use Illuminate\Http\Request;
@@ -298,7 +298,7 @@ class LettersController extends Controller
     public function update(Request $request, string $id)
     {
         if( !is_numeric($id) ) {
-            throw new InvalidLetterIdException();
+            throw new InvalidIdException();
         }
 
         $letter = Letter::find($id);
