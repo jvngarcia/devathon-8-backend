@@ -14,6 +14,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\LaborNotFoundException;
+use App\Exceptions\InvalidIdException;
 use App\Exceptions\LaborRegistrationNotFoundException;
 use App\Http\Requests\LaborRegistrationRequest;
 use App\Models\LaborRegistration;
@@ -202,8 +204,6 @@ class LaborRegistrationController extends Controller
         ], 201);
     }
 
-
-
     /**
      * Retrieve a paginated list of labor registrations (elves).
      *
@@ -344,6 +344,16 @@ class LaborRegistrationController extends Controller
      *              type="string"
      *          )
      *      ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the labor registration",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             example=1
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
@@ -389,19 +399,34 @@ class LaborRegistrationController extends Controller
      *                     example="Resource not found."
      *                 )
      *             )
-     *         )
+     *          )
      *     ),
+     *     @OA\Response(
+     *         response=406,
+     *         description="Invalid ID",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="errors", type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(property="status", type="integer", example=406),
+     *                     @OA\Property(property="title", type="string", example="Invalid Id"),
+     *                     @OA\Property(property="detail", type="string", example="Provided Id didn’t match standard.")
+     *                 )
+     *             )
+     *         )
+     *     )
      * )
      */
     public function show($id): JsonResponse
     {
         if (!is_numeric($id) && $id < 1) {
-            throw new LaborRegistrationNotFoundException();
+            throw new InvalidIdException();
         }
 
         $data = LaborRegistration::find($id);
 
-        if (!$data) {
+        if ($data->isEmpty()) {
             throw new LaborRegistrationNotFoundException();
         }
 
@@ -421,6 +446,127 @@ class LaborRegistrationController extends Controller
                     'id' => $data->id,
                 ]
             ]
+        ], 200);
+    }
+
+
+    /**
+     * @OA\Delete(
+     *     path="/labor-registration/{id}",
+     *     summary="Delete a labor registration",
+     *     description="Deletes a labor registration by its ID. Throws an error if the ID is invalid or the resource does not exist.",
+     *     operationId="deleteLaborRegistration",
+     *     tags={"Labor-Registration"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the labor registration to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             example=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Labor registration deleted successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="Elf successfully deleted."),
+     *             @OA\Property(property="data", type="object",
+     *                 @OA\Property(
+     *                     property="image",
+     *                     type="string",
+     *                     example="http://localhost:8000/storage/image/image.jpg",
+     *                     description="Image of the labor"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string",
+     *                     example="John Doe",
+     *                     description="Name of the labor"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string",
+     *                     example="example@example.com",
+     *                     description="Email of the labor"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="age",
+     *                     type="integer",
+     *                     example=25,
+     *                     description="Age of the labor"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="address",
+     *                     type="string",
+     *                     example="1234 Main St",
+     *                     description="Address of the labor"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="height",
+     *                     type="number",
+     *                     example=1.75,
+     *                     description="Height of the labor"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Labor registration not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="errors", type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(property="status", type="integer", example=404),
+     *                     @OA\Property(property="title", type="string", example="Not Found"),
+     *                     @OA\Property(property="detail", type="string", example="Elf not found.")
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=406,
+     *         description="Invalid ID",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="errors", type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(property="status", type="integer", example=406),
+     *                     @OA\Property(property="title", type="string", example="Invalid Id"),
+     *                     @OA\Property(property="detail", type="string", example="Provided Id didn’t match standard.")
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function destroy(string $id)
+    {
+        if (!is_numeric($id)) {
+            throw new InvalidIdException();
+        }
+
+        $data = LaborRegistration::find($id);
+
+        if (!$data) {
+            throw new LaborRegistrationNotFoundException();
+        }
+
+
+        if (is_null($data)) {
+            throw new LaborNotFoundException();
+        }
+
+        $data->delete();
+
+        return response()->json([
+            'message' => 'Elf successfully deleted.',
+            'data' => $data
         ], 200);
     }
 }
