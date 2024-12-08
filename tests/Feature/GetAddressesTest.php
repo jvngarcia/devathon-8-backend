@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GetAddressesTest
  *
@@ -14,6 +15,7 @@
 namespace Tests\Feature;
 
 use App\Models\Address;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -28,6 +30,8 @@ use Tests\TestCase;
  */
 class GetAddressesTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Success Full Request.
      *
@@ -38,11 +42,10 @@ class GetAddressesTest extends TestCase
         Address::factory(100)->create();
         $response = $this->get(
             '/api/v1/addresses/recent',
-            [ 'X-Api-Key' => env('API_KEY') ]
+            ['X-Api-Key' => env('API_KEY')]
         );
 
         $response->assertStatus(200);
-        Address::truncate();
     }
 
     /**
@@ -56,17 +59,15 @@ class GetAddressesTest extends TestCase
 
         $response = $this->get(
             '/api/v1/addresses/recent',
-            [ 'X-Api-Key' => env('API_KEY') ]
+            ['X-Api-Key' => env('API_KEY')]
         );
 
         $response->assertJson(
-            fn (AssertableJson $json) =>
+            fn(AssertableJson $json) =>
             $json
                 ->has('data', 5)
                 ->has('meta')
         );
-
-        Address::truncate();
     }
 
     /**
@@ -78,7 +79,7 @@ class GetAddressesTest extends TestCase
     {
         $response = $this->get(
             '/api/v1/addresses/recent',
-            [ 'X-Api-Key' => env('API_KEY') ]
+            ['X-Api-Key' => env('API_KEY')]
         );
         $response->assertStatus(404);
     }

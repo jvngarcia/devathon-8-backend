@@ -11,14 +11,14 @@
         }
     ],
     "paths": {
-        "/api/v1/addresses": {
+        "/v1/addresses": {
             "post": {
                 "tags": [
                     "Addresses"
                 ],
                 "summary": "Create a new address",
                 "description": "Store a newly created resource in storage.\n\nThis method validates the incoming request data, checks if the address already exists, and creates a new address record if it does not.",
-                "operationId": "80d1b15a40b77b8584aec349bc414942",
+                "operationId": "3fe8a40edfe1a3a4974c5ad8027bd176",
                 "parameters": [
                     {
                         "name": "X-API-Key",
@@ -37,8 +37,6 @@
                             "schema": {
                                 "required": [
                                     "place",
-                                    "city",
-                                    "country",
                                     "coordinates"
                                 ],
                                 "properties": {
@@ -70,7 +68,11 @@
                                         "type": "object"
                                     }
                                 },
-                                "type": "object"
+                                "type": "object",
+                                "nullable": [
+                                    "city",
+                                    "country"
+                                ]
                             }
                         }
                     }
@@ -98,14 +100,14 @@
                 }
             }
         },
-        "/api/v1/addresses/recent": {
+        "/v1/addresses/recent": {
             "get": {
                 "tags": [
                     "Addresses"
                 ],
                 "summary": "Get the last 5 addresses",
                 "description": "Get the last 5 addresses",
-                "operationId": "a50b8dbb710f0e7ffcfb20160cb09475",
+                "operationId": "94f2b546f6040970157da322ee5cc359",
                 "parameters": [
                     {
                         "name": "X-API-Key",
@@ -125,6 +127,879 @@
                     },
                     "401": {
                         "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/v1/labor-registration": {
+            "post": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Create a new labor registration",
+                "description": "create a new labor registration",
+                "operationId": "d07d66641572397cf8285061fd5e114b",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "image",
+                                    "name",
+                                    "email",
+                                    "age",
+                                    "address",
+                                    "height"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "description": "Image file",
+                                        "type": "string",
+                                        "format": "binary",
+                                        "example": "image.jpg"
+                                    },
+                                    "name": {
+                                        "description": "Name of the labor",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "Email of the labor",
+                                        "type": "string",
+                                        "example": "exampleexample.com"
+                                    },
+                                    "age": {
+                                        "description": "Age of the labor",
+                                        "type": "integer",
+                                        "example": "25"
+                                    },
+                                    "address": {
+                                        "description": "Address of the labor",
+                                        "type": "string",
+                                        "example": "1234 Main St"
+                                    },
+                                    "height": {
+                                        "description": "Height of the labor",
+                                        "type": "number",
+                                        "example": "1.75"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Labor registration created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Labor registration created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "image": {
+                                                    "description": "Image of the labor",
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/storage/image/image.jpg"
+                                                },
+                                                "name": {
+                                                    "description": "Name of the labor",
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "description": "Email of the labor",
+                                                    "type": "string",
+                                                    "example": "exampleexample.com"
+                                                },
+                                                "age": {
+                                                    "description": "Age of the labor",
+                                                    "type": "integer",
+                                                    "example": "25"
+                                                },
+                                                "address": {
+                                                    "description": "Address of the labor",
+                                                    "type": "string",
+                                                    "example": "1234 Main St"
+                                                },
+                                                "height": {
+                                                    "description": "Height of the labor",
+                                                    "type": "number",
+                                                    "example": "1.75"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "height": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The height must be a number."
+                                                    }
+                                                },
+                                                "image": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The image must be an image."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/labor-registration/list": {
+            "get": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Retrieve a paginated list of labor registrations (elves)",
+                "description": "Retrieve a paginated list of labor registrations (elves).",
+                "operationId": "d372ce0e449e6f6091e07e90f13051bd",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number to retrieve",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "http://localhost:8000/storage/image/image.jpg"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "John Doe"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "example@example.com"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": 25
+                                                    },
+                                                    "address": {
+                                                        "type": "string",
+                                                        "example": "1234 Main St"
+                                                    },
+                                                    "height": {
+                                                        "type": "number",
+                                                        "example": 1.75
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "current_page": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "total": {
+                                            "type": "integer",
+                                            "example": 50
+                                        },
+                                        "per_page": {
+                                            "type": "integer",
+                                            "example": 20
+                                        },
+                                        "last_page": {
+                                            "type": "integer",
+                                            "example": 3
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://localhost:8000/api/v1/labor-registration/list?page=2"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 404
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Not Found"
+                                                },
+                                                "detail": {
+                                                    "type": "string",
+                                                    "example": "Resource not found."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "page": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The page field must be an integer and at least 1."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/labor-registration/{id}": {
+            "get": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Retrieve a labor registrations (elves)",
+                "description": "Retrieve a labor registrations (elves).",
+                "operationId": "912b5db446c46a74c35d40eac5620ec4",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the labor registration",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "http://localhost:8000/storage/image/image.jpg"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "John Doe"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "example@example.com"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": 25
+                                                    },
+                                                    "address": {
+                                                        "type": "string",
+                                                        "example": "1234 Main St"
+                                                    },
+                                                    "height": {
+                                                        "type": "number",
+                                                        "example": 1.75
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-05-01 12:00:00"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 404
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Not Found"
+                                                },
+                                                "detail": {
+                                                    "type": "string",
+                                                    "example": "Resource not found."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": 406
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Invalid Id"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Provided Id didn’t match standard."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/labor-registration/{id}": {
+            "delete": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Delete a labor registration",
+                "description": "Deletes a labor registration by its ID. Throws an error if the ID is invalid or the resource does not exist.",
+                "operationId": "deleteLaborRegistration",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the labor registration to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Labor registration deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Elf successfully deleted."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "image": {
+                                                    "description": "Image of the labor",
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/storage/image/image.jpg"
+                                                },
+                                                "name": {
+                                                    "description": "Name of the labor",
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "description": "Email of the labor",
+                                                    "type": "string",
+                                                    "example": "example@example.com"
+                                                },
+                                                "age": {
+                                                    "description": "Age of the labor",
+                                                    "type": "integer",
+                                                    "example": 25
+                                                },
+                                                "address": {
+                                                    "description": "Address of the labor",
+                                                    "type": "string",
+                                                    "example": "1234 Main St"
+                                                },
+                                                "height": {
+                                                    "description": "Height of the labor",
+                                                    "type": "number",
+                                                    "example": 1.75
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Labor registration not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": 404
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Not Found"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Elf not found."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": 406
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Invalid Id"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Provided Id didn’t match standard."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/letters": {
+            "get": {
+                "tags": [
+                    "Letters"
+                ],
+                "summary": "List and obtain letters ",
+                "description": "Display a listing of the letters.",
+                "operationId": "281a73133f54be66e45c6917717c6a61",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filter by read status",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "read",
+                                "unread"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by sender, subject, content, or created_at",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Latest 5 letters",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "letters"
+                                                    },
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "attributes": {
+                                                        "properties": {
+                                                            "sender": {
+                                                                "type": "string",
+                                                                "example": "John Doe"
+                                                            },
+                                                            "subject": {
+                                                                "type": "string",
+                                                                "example": "Hello"
+                                                            },
+                                                            "content": {
+                                                                "type": "string",
+                                                                "example": "Hello, how are you?"
+                                                            },
+                                                            "read": {
+                                                                "type": "boolean",
+                                                                "example": "false"
+                                                            },
+                                                            "image": {
+                                                                "type": "string",
+                                                                "example": "https://example.com/image.jpg"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2021-10-10T10:00:00.000000Z"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "links": {
+                                            "properties": {
+                                                "self": {
+                                                    "type": "string",
+                                                    "example": "link-value"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Letters not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer",
+                                                        "example": "404"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Not Found"
+                                                    },
+                                                    "detail": {
+                                                        "type": "string",
+                                                        "example": "Letters not found."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/letters/{id}": {
+            "put": {
+                "tags": [
+                    "Letters"
+                ],
+                "summary": "Update the read status of a letter",
+                "description": "Toggles the 'read' field (true/false) of a letter by its ID.",
+                "operationId": "updateLetterReadStatus",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the letter",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Status updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Letter status updated successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "sender": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "subject": {
+                                                    "type": "string",
+                                                    "example": "Hello"
+                                                },
+                                                "content": {
+                                                    "type": "string",
+                                                    "example": "Hello, how are you?"
+                                                },
+                                                "read": {
+                                                    "type": "boolean",
+                                                    "example": "false"
+                                                },
+                                                "image_url": {
+                                                    "type": "string",
+                                                    "example": "https://example.com/image.jpg"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2021-10-10T10:00:00.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2021-10-10T10:00:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Letter not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Letter not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid Letter ID."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -159,6 +1034,14 @@
         {
             "name": "Addresses",
             "description": "Addresses"
+        },
+        {
+            "name": "Labor-Registration",
+            "description": "Labor-Registration"
+        },
+        {
+            "name": "Letters",
+            "description": "Letters"
         }
     ]
 }
