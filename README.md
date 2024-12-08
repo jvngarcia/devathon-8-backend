@@ -168,6 +168,10 @@ php artisan route:clear
 php artisan view:clear
 ```
 
+## Documentation
+
+Open the file `doc/index.html`
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
