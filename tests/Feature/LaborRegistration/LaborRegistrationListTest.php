@@ -72,7 +72,7 @@ class LaborRegistrationListTest extends TestCase
                 [
                     'status' => 404,
                     'title' => 'Not Found',
-                    'detail' => 'No elves found.',
+                    'detail' => 'Resource not found.',
                 ],
             ],
         ]);
