@@ -168,6 +168,13 @@ php artisan route:clear
 php artisan view:clear
 ```
 
+## Documentation
+
+Open the file `doc/index.html`
+
+## Database structure
+![image](https://github.com/user-attachments/assets/529a5d5c-b418-4f73-9f58-f0028fff0f7c)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).

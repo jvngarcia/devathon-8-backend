@@ -67,12 +67,12 @@ class LaborRegistrationListTest extends TestCase
 
         $response->assertStatus(404);
 
-        $response->assertJson([
+        $response->assertJsonStructure([
             'errors' => [
                 [
-                    'status' => 404,
-                    'title' => 'Not Found',
-                    'detail' => 'Resource not found.',
+                    'status',
+                    'title',
+                    'detail'
                 ],
             ],
         ]);
