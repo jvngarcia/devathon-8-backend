@@ -311,7 +311,17 @@ class LaborRegistrationController extends Controller
             'paginate' => 'integer|min:1',
         ]);
 
-        $data = LaborRegistration::orderBy('created_at', 'desc')->paginate(20);
+        $query = LaborRegistration::query();
+
+        if ($request->has("search")) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->has("order") && $request->has("direction")) {
+            $query->orderBy($request->order, $request->direction);
+        }
+
+        $data = $query->paginate($request->paginate);
 
         if ($data->isEmpty()) {
             throw new LaborRegistrationNotFoundException();
