@@ -18,7 +18,7 @@ class LaborRegistrationFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'image' => $this->faker->imageUrl(),
+            'image' => "https://picsum.photos/150/150?random=4",
             'email' => $this->faker->unique()->safeEmail,
             'age' => $this->faker->numberBetween(18, 60),
             'address' => $this->faker->address,
