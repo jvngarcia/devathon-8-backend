@@ -19,6 +19,7 @@ use App\Exceptions\InvalidIdException;
 use App\Exceptions\LaborRegistrationNotFoundException;
 use App\Http\Requests\LaborRegistrationRequest;
 use App\Models\LaborRegistration;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -577,6 +578,42 @@ class LaborRegistrationController extends Controller
         return response()->json([
             'message' => 'Elf successfully deleted.',
             'data' => $data
+        ], 200);
+    }
+
+    public function update(LaborRegistrationRequest $request): JsonResponse
+    {
+        $id = $request->input('id');
+
+        $elf = LaborRegistration::find($id);
+
+        if (!$elf) {
+            throw new LaborNotFoundException();
+        }
+
+        $request->validate();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image->store('image/');
+
+            $elf->image = $image->hashName();
+        }
+
+        $elf->update($request->only(['name', 'email', 'age', 'address', 'height']));
+
+        $urlImage = url('storage/image/' . $elf->image);
+
+        return new JsonResponse([
+            'message' => 'Elf updated successfully.',
+            'data' => [
+                'image' => $urlImage,
+                'name' => $elf->name,
+                'email' => $elf->email,
+                'age' => $elf->age,
+                'address' => $elf->address,
+                'height' => $elf->height,
+            ]
         ], 200);
     }
 }
