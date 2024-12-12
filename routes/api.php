@@ -18,7 +18,8 @@ Route::prefix('v1')->middleware([EnsureApiKeyIsValid::class])->group(
         Route::put('/letter/{id}', [LettersController::class, 'update']);
 
         Route::post('/labor-registration', [LaborRegistrationController::class, 'create'])->name('labor-registration.create');
-        Route::get('/labor-registration/list', [LaborRegistrationController::class, 'index']);
+        Route::put('/labor-registration/{id}', [LaborRegistrationController::class, 'update'])->name('labor-registration.update');
+        Route::get('/labor-registration/list', [LaborRegistrationController::class, 'index'])->name('labor-registration.index');
         Route::get('/labor-registration/{id}', [LaborRegistrationController::class, 'show'])->name('labor-registration.show');
         Route::delete('/labor-registration/{id}', [LaborRegistrationController::class, 'destroy']);
     }

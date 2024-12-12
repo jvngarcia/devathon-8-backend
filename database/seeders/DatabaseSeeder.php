@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Address;
+use App\Models\LaborRegistration;
 use App\Models\Letter;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -26,6 +27,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             LetterSeeder::class,
+            AddressSeeder::class,
+            LaborRegistrationSeeder::class,
         ]);
     }
 }
