@@ -643,13 +643,13 @@ class LaborRegistrationController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *        response=201,
-     *        description="Labor registration created successfully",
+     *        response=200,
+     *        description="Elf updated successfully",
      *        @OA\JsonContent(
      *          @OA\Property(
      *            property="message",
      *            type="string",
-     *            example="Labor registration created successfully"
+     *            example="Elf updated successfully"
      *          ),
      *          @OA\Property(
      *            property="data",
@@ -690,6 +690,28 @@ class LaborRegistrationController extends Controller
      *              example="1.75",
      *              description="Height of the labor"
      *            )
+     *          )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *              property="message",
+     *              type="string",
+     *              example="Unauthorized"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *        response=404,
+     *        description="Elf not found",
+     *        @OA\JsonContent(
+     *          @OA\Property(
+     *            property="message",
+     *            type="string",
+     *            example="Elf not found"
      *          )
      *        )
      *      ),
@@ -751,6 +773,6 @@ class LaborRegistrationController extends Controller
                 'address' => $elf->address,
                 'height' => $elf->height,
             ]
-        ], 200);
+        ], 200, ['message' => 'Elf updated successfully.']);
     }
 }

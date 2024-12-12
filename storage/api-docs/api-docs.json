@@ -665,15 +665,15 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Labor registration created successfully",
+                    "200": {
+                        "description": "Elf updated successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "Labor registration created successfully"
+                                            "example": "Elf updated successfully"
                                         },
                                         "data": {
                                             "properties": {
@@ -709,6 +709,38 @@
                                                 }
                                             },
                                             "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Elf not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Elf not found"
                                         }
                                     },
                                     "type": "object"
