@@ -581,19 +581,156 @@ class LaborRegistrationController extends Controller
         ], 200);
     }
 
-    public function update(LaborRegistrationRequest $request): JsonResponse
+    /**
+     * Update labor registration
+     *
+     * @param  LaborRegistrationRequest $request request
+     * @return JsonResponse response success response
+     * 
+     * @OA\Put(
+     *      path="/v1/labor-registration/{id}",
+     *      summary="Update labor registration",
+     *      tags={"Labor-Registration"},
+     *      @OA\Parameter(
+     *          name="X-API-Key",
+     *          in="header",
+     *          description="API Key",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              required={"image", "name", "email", "age", "address", "height"},
+     *              @OA\Property(
+     *                  property="image",
+     *                  type="string",
+     *                  format="binary",
+     *                  example="image.jpg",
+     *                  description="Image file"
+     *              ),
+     *              @OA\Property(
+     *                property="name",
+     *                type="string",
+     *                example="John Doe",
+     *                description="Name of the labor"
+     *              ),
+     *              @OA\Property(
+     *                property="email",
+     *                type="string",
+     *                example="exampleexample.com",
+     *                description="Email of the labor"
+     *              ),
+     *              @OA\Property(
+     *                property="age",
+     *                type="integer",
+     *                example="25",
+     *                description="Age of the labor"
+     *              ),
+     *              @OA\Property(
+     *                property="address",
+     *                type="string",
+     *                example="1234 Main St",
+     *                description="Address of the labor"
+     *              ),
+     *              @OA\Property(
+     *                property="height",
+     *                type="number",
+     *                example="1.75",
+     *                description="Height of the labor"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *        response=201,
+     *        description="Labor registration created successfully",
+     *        @OA\JsonContent(
+     *          @OA\Property(
+     *            property="message",
+     *            type="string",
+     *            example="Labor registration created successfully"
+     *          ),
+     *          @OA\Property(
+     *            property="data",
+     *            type="object",
+     *            @OA\Property(
+     *              property="image",
+     *              type="string",
+     *              example="http://localhost:8000/storage/image/image.jpg",
+     *              description="Image of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="name",
+     *              type="string",
+     *              example="John Doe",
+     *              description="Name of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="email",
+     *              type="string",
+     *              example="exampleexample.com",
+     *              description="Email of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="age",
+     *              type="integer",
+     *              example="25",
+     *              description="Age of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="address",
+     *              type="string",
+     *              example="1234 Main St",
+     *              description="Address of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="height",
+     *              type="number",
+     *              example="1.75",
+     *              description="Height of the labor"
+     *            )
+     *          )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *        response=422,
+     *        description="Invalid data",
+     *        @OA\JsonContent(
+     *          @OA\Property(
+     *            property="errors",
+     *            type="object",
+     *            @OA\Property(
+     *              property="height",
+     *              type="array",
+     *              @OA\Items(
+     *                type="string",
+     *                example="The height must be a number."
+     *              )
+     *            ),
+     *            @OA\Property(
+     *              property="image",
+     *              type="array",
+     *              @OA\Items(
+     *                type="string",
+     *                example="The image must be an image.",
+     *              )
+     *            )
+     *          )
+     *        )
+     *      )
+     * )          
+     */
+    public function update(LaborRegistrationRequest $request, string $id): JsonResponse
     {
-        $id = $request->input('id');
-
+        $request->validated();
         $elf = LaborRegistration::find($id);
 
         if (!$elf) {
             throw new LaborNotFoundException();
         }
 
-        $request->validate();
-
-        if ($request->hasFile('image')) {
+        if ($request->file('image') != null) {
             $image = $request->file('image');
             $image->store('image/');
 
