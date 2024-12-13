@@ -335,6 +335,14 @@ class LaborRegistrationController extends Controller
             throw new LaborRegistrationNotFoundException();
         }
 
+        foreach ($data as $key => $value) {
+            if (strpos($value->image, 'http') === 0) {
+                continue;
+            }
+            $urlImage = url('storage/image/' . $value->image);
+            $data[$key]->image = $urlImage;
+        }
+
         return response()->json($data, 200);
     }
 
