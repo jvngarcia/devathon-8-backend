@@ -170,9 +170,17 @@ php artisan view:clear
 
 ## Documentation
 
+### PHPDoc
+
 Open the file `doc/index.html`
 
+### Swagger
+
+Execute `php artisan serve`
+Open `http://localhost:8000/api/documentation`
+
 ## Database structure
+
 ![image](https://github.com/user-attachments/assets/529a5d5c-b418-4f73-9f58-f0028fff0f7c)
 
 ## License

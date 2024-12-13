@@ -18,6 +18,8 @@ use App\Exceptions\LaborNotFoundException;
 use App\Exceptions\InvalidIdException;
 use App\Exceptions\LaborRegistrationNotFoundException;
 use App\Http\Requests\LaborRegistrationRequest;
+use App\Http\Requests\UpdateImageLaborRegistrationRequest;
+use App\Http\Requests\UpdateLaborRegistrationRequest;
 use App\Models\LaborRegistration;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\JsonResponse;
@@ -743,7 +745,7 @@ class LaborRegistrationController extends Controller
      *      )
      * )          
      */
-    public function update(LaborRegistrationRequest $request, string $id): JsonResponse
+    public function update(UpdateLaborRegistrationRequest $request, string $id): JsonResponse
     {
         $request->validated();
         $elf = LaborRegistration::find($id);
@@ -752,14 +754,171 @@ class LaborRegistrationController extends Controller
             throw new LaborNotFoundException();
         }
 
-        if ($request->file('image') != null) {
-            $image = $request->file('image');
-            $image->store('image/');
+        $elf->update(
+            $request->only(['name', 'email', 'age', 'address', 'height'])
+        );
+        $elf->save();
 
-            $elf->image = $image->hashName();
+        $urlImage = url('storage/image/' . $elf->image);
+
+        return new JsonResponse([
+            'message' => 'Elf updated successfully.',
+            'data' => [
+                'image' => $urlImage,
+                'name' => $elf->name,
+                'email' => $elf->email,
+                'age' => $elf->age,
+                'address' => $elf->address,
+                'height' => $elf->height,
+            ]
+        ], 200, ['message' => 'Elf updated successfully.']);
+    }
+
+    /** 
+     * Update image of labor registration
+     * 
+     * @param UpdateImageLaborRegistrationRequest $request request
+     * @param string $id id
+     * 
+     * @return JsonResponse response success response
+     * 
+     * @OA\Post(
+     *   path="/v1/labor-registration/{id}",
+     *   summary="Update image of labor registration",  
+     *   tags={"Labor-Registration"},
+     *   @OA\Parameter(
+     *     name="X-API-Key",
+     *     in="header",
+     *     description="API Key",
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     required=true
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         required={"image"},
+     *         @OA\Property(
+     *           property="image",
+     *           type="string",
+     *           format="binary",
+     *           example="image.jpg",
+     *           description="Image file"
+     *         )
+     *       )
+     *     )
+     *   ),
+     *   @OA\Response(
+     *        response=200,
+     *        description="Elf updated successfully",
+     *        @OA\JsonContent(
+     *          @OA\Property(
+     *            property="message",
+     *            type="string",
+     *            example="Elf updated successfully"
+     *          ),
+     *          @OA\Property(
+     *            property="data",
+     *            type="object",
+     *            @OA\Property(
+     *              property="image",
+     *              type="string",
+     *              example="http://localhost:8000/storage/image/image.jpg",
+     *              description="Image of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="name",
+     *              type="string",
+     *              example="John Doe",
+     *              description="Name of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="email",
+     *              type="string",
+     *              example="exampleexample.com",
+     *              description="Email of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="age",
+     *              type="integer",
+     *              example="25",
+     *              description="Age of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="address",
+     *              type="string",
+     *              example="1234 Main St",
+     *              description="Address of the labor"
+     *            ),
+     *            @OA\Property(
+     *              property="height",
+     *              type="number",
+     *              example="1.75",
+     *              description="Height of the labor"
+     *            )
+     *          )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *              property="message",
+     *              type="string",
+     *              example="Unauthorized"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *        response=404,
+     *        description="Elf not found",
+     *        @OA\JsonContent(
+     *          @OA\Property(
+     *            property="message",
+     *            type="string",
+     *            example="Elf not found"
+     *          )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *        response=422,
+     *        description="Invalid data",
+     *        @OA\JsonContent(
+     *          @OA\Property(
+     *            property="errors",
+     *            type="object",
+     *            @OA\Property(
+     *              property="image",
+     *              type="array",
+     *              @OA\Items(
+     *                type="string",
+     *                example="The image must be an image.",
+     *              )
+     *            )
+     *          )
+     *        )
+     *      )
+     *   )
+     *       
+     */
+    public function updateImage(UpdateImageLaborRegistrationRequest $request, string $id)
+    {
+        $request->validated();
+        $elf = LaborRegistration::find($id);
+
+        if (!$elf) {
+            throw new LaborNotFoundException();
         }
 
-        $elf->update($request->only(['name', 'email', 'age', 'address', 'height']));
+        $image = $request->file('image');
+        $image->store('image/');
+
+        $elf->image = $image->hashName();
+        $elf->save();
 
         $urlImage = url('storage/image/' . $elf->image);
 
