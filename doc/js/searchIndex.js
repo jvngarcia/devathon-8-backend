@@ -116,6 +116,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Http-Controllers-LaborRegistrationController.html#method_destroy"
         },                {
+            "fqsen": "\\App\\Http\\Controllers\\LaborRegistrationController\u003A\u003Aupdate\u0028\u0029",
+            "name": "update",
+            "summary": "Update\u0020labor\u0020registration",
+            "url": "classes/App-Http-Controllers-LaborRegistrationController.html#method_update"
+        },                {
+            "fqsen": "\\App\\Http\\Controllers\\LaborRegistrationController\u003A\u003AupdateImage\u0028\u0029",
+            "name": "updateImage",
+            "summary": "Update\u0020image\u0020of\u0020labor\u0020registration",
+            "url": "classes/App-Http-Controllers-LaborRegistrationController.html#method_updateImage"
+        },                {
             "fqsen": "\\App\\Http\\Controllers\\LettersController",
             "name": "LettersController",
             "summary": "Letters\u0020Controller",
@@ -170,6 +180,46 @@ Search.appendIndex(
             "name": "failedValidation",
             "summary": "Get\u0020the\u0020error\u0020messages\u0020for\u0020the\u0020defined\u0020validation\u0020rules.",
             "url": "classes/App-Http-Requests-LaborRegistrationRequest.html#method_failedValidation"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateImageLaborRegistrationRequest",
+            "name": "UpdateImageLaborRegistrationRequest",
+            "summary": "",
+            "url": "classes/App-Http-Requests-UpdateImageLaborRegistrationRequest.html"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateImageLaborRegistrationRequest\u003A\u003Aauthorize\u0028\u0029",
+            "name": "authorize",
+            "summary": "Determine\u0020if\u0020the\u0020user\u0020is\u0020authorized\u0020to\u0020make\u0020this\u0020request.",
+            "url": "classes/App-Http-Requests-UpdateImageLaborRegistrationRequest.html#method_authorize"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateImageLaborRegistrationRequest\u003A\u003Arules\u0028\u0029",
+            "name": "rules",
+            "summary": "Get\u0020the\u0020validation\u0020rules\u0020that\u0020apply\u0020to\u0020the\u0020request.",
+            "url": "classes/App-Http-Requests-UpdateImageLaborRegistrationRequest.html#method_rules"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateImageLaborRegistrationRequest\u003A\u003AfailedValidation\u0028\u0029",
+            "name": "failedValidation",
+            "summary": "Get\u0020the\u0020error\u0020messages\u0020for\u0020the\u0020defined\u0020validation\u0020rules.",
+            "url": "classes/App-Http-Requests-UpdateImageLaborRegistrationRequest.html#method_failedValidation"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateLaborRegistrationRequest",
+            "name": "UpdateLaborRegistrationRequest",
+            "summary": "",
+            "url": "classes/App-Http-Requests-UpdateLaborRegistrationRequest.html"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateLaborRegistrationRequest\u003A\u003Aauthorize\u0028\u0029",
+            "name": "authorize",
+            "summary": "Determine\u0020if\u0020the\u0020user\u0020is\u0020authorized\u0020to\u0020make\u0020this\u0020request.",
+            "url": "classes/App-Http-Requests-UpdateLaborRegistrationRequest.html#method_authorize"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateLaborRegistrationRequest\u003A\u003Arules\u0028\u0029",
+            "name": "rules",
+            "summary": "Get\u0020the\u0020validation\u0020rules\u0020that\u0020apply\u0020to\u0020the\u0020request.",
+            "url": "classes/App-Http-Requests-UpdateLaborRegistrationRequest.html#method_rules"
+        },                {
+            "fqsen": "\\App\\Http\\Requests\\UpdateLaborRegistrationRequest\u003A\u003AfailedValidation\u0028\u0029",
+            "name": "failedValidation",
+            "summary": "Get\u0020the\u0020error\u0020messages\u0020for\u0020the\u0020defined\u0020validation\u0020rules.",
+            "url": "classes/App-Http-Requests-UpdateLaborRegistrationRequest.html#method_failedValidation"
         },                {
             "fqsen": "\\App\\Http\\Resources\\AddressCollection",
             "name": "AddressCollection",

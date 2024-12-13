@@ -24,10 +24,9 @@ class UpdateLaborRegistrationTest extends TestCase
     public function testItShouldUpdateLaborRegistration(): void
     {
         $labor = LaborRegistration::factory()->create();
-        $imageJPG = UploadedFile::fake()->image('image.jpg', 640, 480, 'image/jpeg');
+
 
         $response = $this->putJson(route('labor-registration.update', ['id' => $labor->id]), [
-            'image' => $imageJPG,
             'name' => 'John Doe',
             'email' => 'test@test.com',
             'age' => 25,
@@ -52,10 +51,9 @@ class UpdateLaborRegistrationTest extends TestCase
     public function testItShouldNotUpdateLaborRegistrationWithInvalidData(): void
     {
         $labor = LaborRegistration::factory()->create();
-        $imageJPG = UploadedFile::fake()->image('image.jpg', 640, 480, 'image/jpeg');
+
 
         $response = $this->putJson(route('labor-registration.update', ['id' => $labor->id]), [
-            'image' => $imageJPG,
             'name' => 'John Doe',
             'email' => 'test@test.com',
             'age' => 25,
