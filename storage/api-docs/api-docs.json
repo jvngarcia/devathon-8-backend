@@ -595,6 +595,340 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Update labor registration",
+                "description": "Update labor registration",
+                "operationId": "ecabb5907ca6f419f6c08cb1ba061b27",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "image",
+                                    "name",
+                                    "email",
+                                    "age",
+                                    "address",
+                                    "height"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "description": "Image file",
+                                        "type": "string",
+                                        "format": "binary",
+                                        "example": "image.jpg"
+                                    },
+                                    "name": {
+                                        "description": "Name of the labor",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "Email of the labor",
+                                        "type": "string",
+                                        "example": "exampleexample.com"
+                                    },
+                                    "age": {
+                                        "description": "Age of the labor",
+                                        "type": "integer",
+                                        "example": "25"
+                                    },
+                                    "address": {
+                                        "description": "Address of the labor",
+                                        "type": "string",
+                                        "example": "1234 Main St"
+                                    },
+                                    "height": {
+                                        "description": "Height of the labor",
+                                        "type": "number",
+                                        "example": "1.75"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Elf updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Elf updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "image": {
+                                                    "description": "Image of the labor",
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/storage/image/image.jpg"
+                                                },
+                                                "name": {
+                                                    "description": "Name of the labor",
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "description": "Email of the labor",
+                                                    "type": "string",
+                                                    "example": "exampleexample.com"
+                                                },
+                                                "age": {
+                                                    "description": "Age of the labor",
+                                                    "type": "integer",
+                                                    "example": "25"
+                                                },
+                                                "address": {
+                                                    "description": "Address of the labor",
+                                                    "type": "string",
+                                                    "example": "1234 Main St"
+                                                },
+                                                "height": {
+                                                    "description": "Height of the labor",
+                                                    "type": "number",
+                                                    "example": "1.75"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Elf not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Elf not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "height": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The height must be a number."
+                                                    }
+                                                },
+                                                "image": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The image must be an image."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Labor-Registration"
+                ],
+                "summary": "Update image of labor registration",
+                "description": "Update image of labor registration",
+                "operationId": "95124919333347ab7dae6091ae4d772a",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "API Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "image"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "description": "Image file",
+                                        "type": "string",
+                                        "format": "binary",
+                                        "example": "image.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Elf updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Elf updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "image": {
+                                                    "description": "Image of the labor",
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/storage/image/image.jpg"
+                                                },
+                                                "name": {
+                                                    "description": "Name of the labor",
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "description": "Email of the labor",
+                                                    "type": "string",
+                                                    "example": "exampleexample.com"
+                                                },
+                                                "age": {
+                                                    "description": "Age of the labor",
+                                                    "type": "integer",
+                                                    "example": "25"
+                                                },
+                                                "address": {
+                                                    "description": "Address of the labor",
+                                                    "type": "string",
+                                                    "example": "1234 Main St"
+                                                },
+                                                "height": {
+                                                    "description": "Height of the labor",
+                                                    "type": "number",
+                                                    "example": "1.75"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Elf not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Elf not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "image": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The image must be an image."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/labor-registration/{id}": {

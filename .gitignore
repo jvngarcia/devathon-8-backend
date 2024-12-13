@@ -25,3 +25,4 @@ yarn-error.log
 packages.txt
 /.husky/commit-msg
 devathon-8-backend.code-workspace
+.phpdoc/

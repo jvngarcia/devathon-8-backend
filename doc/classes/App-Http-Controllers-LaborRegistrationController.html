@@ -249,7 +249,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Controllers/LaborRegistrationController.php"><a href="files/app-http-controllers-laborregistrationcontroller.html"><abbr title="app/Http/Controllers/LaborRegistrationController.php">LaborRegistrationController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -352,6 +352,20 @@
 </dt>
 <dd>Retrieve a labor registrations (elves).</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/App-Http-Controllers-LaborRegistrationController.html#method_update">update()</a>
+    <span>
+                                &nbsp;: <abbr title="\Illuminate\Http\JsonResponse">JsonResponse</abbr>    </span>
+</dt>
+<dd>Update labor registration</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/App-Http-Controllers-LaborRegistrationController.html#method_updateImage">updateImage()</a>
+    <span>
+                                &nbsp;: <abbr title="\Illuminate\Http\JsonResponse">JsonResponse</abbr>    </span>
+</dt>
+<dd>Update image of labor registration</dd>
+
     </dl>
 
 
@@ -380,7 +394,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Controllers/LaborRegistrationController.php"><a href="files/app-http-controllers-laborregistrationcontroller.html"><abbr title="app/Http/Controllers/LaborRegistrationController.php">LaborRegistrationController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
     </aside>
 
@@ -583,7 +597,7 @@ example=&quot;The image must be an image.&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Controllers/LaborRegistrationController.php"><a href="files/app-http-controllers-laborregistrationcontroller.html"><abbr title="app/Http/Controllers/LaborRegistrationController.php">LaborRegistrationController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">548</span>
+    <span class="phpdocumentor-element-found-in__line">569</span>
 
     </aside>
 
@@ -735,7 +749,7 @@ type=&quot;object&quot;,
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Controllers/LaborRegistrationController.php"><a href="files/app-http-controllers-laborregistrationcontroller.html"><abbr title="app/Http/Controllers/LaborRegistrationController.php">LaborRegistrationController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">308</span>
+    <span class="phpdocumentor-element-found-in__line">311</span>
 
     </aside>
 
@@ -899,7 +913,7 @@ example=&quot;The page field must be an integer and at least 1.&quot;
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Controllers/LaborRegistrationController.php"><a href="files/app-http-controllers-laborregistrationcontroller.html"><abbr title="app/Http/Controllers/LaborRegistrationController.php">LaborRegistrationController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">421</span>
+    <span class="phpdocumentor-element-found-in__line">442</span>
 
     </aside>
 
@@ -1040,6 +1054,438 @@ type=&quot;object&quot;,
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_update">
+        update()
+        <a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_update" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Controllers/LaborRegistrationController.php"><a href="files/app-http-controllers-laborregistrationcontroller.html"><abbr title="app/Http/Controllers/LaborRegistrationController.php">LaborRegistrationController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">756</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Update labor registration</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">update</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Http-Requests-LaborRegistrationRequest.html"><abbr title="\App\Http\Requests\LaborRegistrationRequest">LaborRegistrationRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Http\JsonResponse">JsonResponse</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Http-Requests-LaborRegistrationRequest.html"><abbr title="\App\Http\Requests\LaborRegistrationRequest">LaborRegistrationRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>request</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_update#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">OA\Put</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(
+path=&quot;/v1/labor-registration/{id}&quot;,
+summary=&quot;Update labor registration&quot;,
+tags={&quot;Labor-Registration&quot;},
+@OA\Parameter(
+name=&quot;X-API-Key&quot;,
+in=&quot;header&quot;,
+description=&quot;API Key&quot;,
+@OA\Schema(
+type=&quot;string&quot;
+)
+),
+@OA\RequestBody(
+required=true,
+@OA\JsonContent(
+required={&quot;image&quot;, &quot;name&quot;, &quot;email&quot;, &quot;age&quot;, &quot;address&quot;, &quot;height&quot;},
+@OA\Property(
+property=&quot;image&quot;,
+type=&quot;string&quot;,
+format=&quot;binary&quot;,
+example=&quot;image.jpg&quot;,
+description=&quot;Image file&quot;
+),
+@OA\Property(
+property=&quot;name&quot;,
+type=&quot;string&quot;,
+example=&quot;John Doe&quot;,
+description=&quot;Name of the labor&quot;
+),
+@OA\Property(
+property=&quot;email&quot;,
+type=&quot;string&quot;,
+example=&quot;exampleexample.com&quot;,
+description=&quot;Email of the labor&quot;
+),
+@OA\Property(
+property=&quot;age&quot;,
+type=&quot;integer&quot;,
+example=&quot;25&quot;,
+description=&quot;Age of the labor&quot;
+),
+@OA\Property(
+property=&quot;address&quot;,
+type=&quot;string&quot;,
+example=&quot;1234 Main St&quot;,
+description=&quot;Address of the labor&quot;
+),
+@OA\Property(
+property=&quot;height&quot;,
+type=&quot;number&quot;,
+example=&quot;1.75&quot;,
+description=&quot;Height of the labor&quot;
+)
+)
+),
+@OA\Response(
+response=200,
+description=&quot;Elf updated successfully&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;message&quot;,
+type=&quot;string&quot;,
+example=&quot;Elf updated successfully&quot;
+),
+@OA\Property(
+property=&quot;data&quot;,
+type=&quot;object&quot;,
+@OA\Property(
+property=&quot;image&quot;,
+type=&quot;string&quot;,
+example=&quot;http://localhost:8000/storage/image/image.jpg&quot;,
+description=&quot;Image of the labor&quot;
+),
+@OA\Property(
+property=&quot;name&quot;,
+type=&quot;string&quot;,
+example=&quot;John Doe&quot;,
+description=&quot;Name of the labor&quot;
+),
+@OA\Property(
+property=&quot;email&quot;,
+type=&quot;string&quot;,
+example=&quot;exampleexample.com&quot;,
+description=&quot;Email of the labor&quot;
+),
+@OA\Property(
+property=&quot;age&quot;,
+type=&quot;integer&quot;,
+example=&quot;25&quot;,
+description=&quot;Age of the labor&quot;
+),
+@OA\Property(
+property=&quot;address&quot;,
+type=&quot;string&quot;,
+example=&quot;1234 Main St&quot;,
+description=&quot;Address of the labor&quot;
+),
+@OA\Property(
+property=&quot;height&quot;,
+type=&quot;number&quot;,
+example=&quot;1.75&quot;,
+description=&quot;Height of the labor&quot;
+)
+)
+)
+),
+@OA\Response(
+response=401,
+description=&quot;Unauthorized&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;message&quot;,
+type=&quot;string&quot;,
+example=&quot;Unauthorized&quot;
+)
+)
+),
+@OA\Response(
+response=404,
+description=&quot;Elf not found&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;message&quot;,
+type=&quot;string&quot;,
+example=&quot;Elf not found&quot;
+)
+)
+),
+@OA\Response(
+response=422,
+description=&quot;Invalid data&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;errors&quot;,
+type=&quot;object&quot;,
+@OA\Property(
+property=&quot;height&quot;,
+type=&quot;array&quot;,
+@OA\Items(
+type=&quot;string&quot;,
+example=&quot;The height must be a number.&quot;
+)
+),
+@OA\Property(
+property=&quot;image&quot;,
+type=&quot;array&quot;,
+@OA\Items(
+type=&quot;string&quot;,
+example=&quot;The image must be an image.&quot;,
+)
+)
+)
+)
+)
+)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Http\JsonResponse">JsonResponse</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>response success response</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updateImage">
+        updateImage()
+        <a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_updateImage" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Controllers/LaborRegistrationController.php"><a href="files/app-http-controllers-laborregistrationcontroller.html"><abbr title="app/Http/Controllers/LaborRegistrationController.php">LaborRegistrationController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">916</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Update image of labor registration</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">updateImage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Http-Requests-UpdateImageLaborRegistrationRequest.html"><abbr title="\App\Http\Requests\UpdateImageLaborRegistrationRequest">UpdateImageLaborRegistrationRequest</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Http\JsonResponse">JsonResponse</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$request</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Http-Requests-UpdateImageLaborRegistrationRequest.html"><abbr title="\App\Http\Requests\UpdateImageLaborRegistrationRequest">UpdateImageLaborRegistrationRequest</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>request</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>id</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_updateImage#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">OA\Post</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>(
+path=&quot;/v1/labor-registration/{id}&quot;,
+summary=&quot;Update image of labor registration&quot;,
+tags={&quot;Labor-Registration&quot;},
+@OA\Parameter(
+name=&quot;X-API-Key&quot;,
+in=&quot;header&quot;,
+description=&quot;API Key&quot;,
+@OA\Schema(
+type=&quot;string&quot;
+),
+required=true
+),
+@OA\RequestBody(
+required=true,
+@OA\MediaType(
+mediaType=&quot;multipart/form-data&quot;,
+@OA\Schema(
+required={&quot;image&quot;},
+@OA\Property(
+property=&quot;image&quot;,
+type=&quot;string&quot;,
+format=&quot;binary&quot;,
+example=&quot;image.jpg&quot;,
+description=&quot;Image file&quot;
+)
+)
+)
+),
+@OA\Response(
+response=200,
+description=&quot;Elf updated successfully&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;message&quot;,
+type=&quot;string&quot;,
+example=&quot;Elf updated successfully&quot;
+),
+@OA\Property(
+property=&quot;data&quot;,
+type=&quot;object&quot;,
+@OA\Property(
+property=&quot;image&quot;,
+type=&quot;string&quot;,
+example=&quot;http://localhost:8000/storage/image/image.jpg&quot;,
+description=&quot;Image of the labor&quot;
+),
+@OA\Property(
+property=&quot;name&quot;,
+type=&quot;string&quot;,
+example=&quot;John Doe&quot;,
+description=&quot;Name of the labor&quot;
+),
+@OA\Property(
+property=&quot;email&quot;,
+type=&quot;string&quot;,
+example=&quot;exampleexample.com&quot;,
+description=&quot;Email of the labor&quot;
+),
+@OA\Property(
+property=&quot;age&quot;,
+type=&quot;integer&quot;,
+example=&quot;25&quot;,
+description=&quot;Age of the labor&quot;
+),
+@OA\Property(
+property=&quot;address&quot;,
+type=&quot;string&quot;,
+example=&quot;1234 Main St&quot;,
+description=&quot;Address of the labor&quot;
+),
+@OA\Property(
+property=&quot;height&quot;,
+type=&quot;number&quot;,
+example=&quot;1.75&quot;,
+description=&quot;Height of the labor&quot;
+)
+)
+)
+),
+@OA\Response(
+response=401,
+description=&quot;Unauthorized&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;message&quot;,
+type=&quot;string&quot;,
+example=&quot;Unauthorized&quot;
+)
+)
+),
+@OA\Response(
+response=404,
+description=&quot;Elf not found&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;message&quot;,
+type=&quot;string&quot;,
+example=&quot;Elf not found&quot;
+)
+)
+),
+@OA\Response(
+response=422,
+description=&quot;Invalid data&quot;,
+@OA\JsonContent(
+@OA\Property(
+property=&quot;errors&quot;,
+type=&quot;object&quot;,
+@OA\Property(
+property=&quot;image&quot;,
+type=&quot;array&quot;,
+@OA\Items(
+type=&quot;string&quot;,
+example=&quot;The image must be an image.&quot;,
+)
+)
+)
+)
+)
+)</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Http\JsonResponse">JsonResponse</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>response success response</p>
+</section>
+
+            </section>
+
+</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
@@ -1157,6 +1603,8 @@ type=&quot;object&quot;,
                                             <li class=""><a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_destroy">destroy()</a></li>
                                             <li class=""><a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_index">index()</a></li>
                                             <li class=""><a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_show">show()</a></li>
+                                            <li class=""><a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_update">update()</a></li>
+                                            <li class=""><a href="classes/App-Http-Controllers-LaborRegistrationController.html#method_updateImage">updateImage()</a></li>
                                     </ul>
             </li>
                     </ul>
