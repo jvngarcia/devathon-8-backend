@@ -327,12 +327,12 @@ class LaborRegistrationController extends Controller
         $data = $query->paginate($request->paginate);
 
         if ($data->isEmpty()) {
-            throw new LaborRegistrationNotFoundException();
+            return response()->json([], 200);
         }
 
         $currentPage = $request->query('page', 1);
         if ($currentPage > $data->lastPage()) {
-            throw new LaborRegistrationNotFoundException();
+            return response()->json([], 200);
         }
 
         foreach ($data as $key => $value) {
